@@ -1,162 +1,28 @@
-/**
- * 全局样式 - 简洁风格，单色强调
- */
-
 :root {
-  --ifm-color-primary: #3b82f6;
-  --ifm-color-primary-dark: #2563eb;
-  --ifm-color-primary-darker: #1d4ed8;
-  --ifm-color-primary-darkest: #1e40af;
-  --ifm-color-primary-light: #60a5fa;
-  --ifm-color-primary-lighter: #93c5fd;
-  --ifm-color-primary-lightest: #bfdbfe;
+  --ifm-color-primary: #617ee8;
+  --ifm-color-primary-dark: #4e69cf;
+  --ifm-color-primary-darker: #4059b7;
+  --ifm-color-primary-darkest: #304594;
+  --ifm-color-primary-light: #8199ef;
+  --ifm-color-primary-lighter: #aebcf7;
+  --ifm-color-primary-lightest: #dbe2ff;
   --ifm-code-font-size: 95%;
-  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] {
-  --ifm-color-primary: #60a5fa;
-  --ifm-color-primary-dark: #3b82f6;
-  --ifm-color-primary-darker: #2563eb;
-  --ifm-color-primary-darkest: #1d4ed8;
-  --ifm-color-primary-light: #93c5fd;
-  --ifm-color-primary-lighter: #bfdbfe;
-  --ifm-color-primary-lightest: #dbeafe;
+  --ifm-color-primary: #9bb2ff;
+  --ifm-color-primary-dark: #8199ef;
+  --ifm-color-primary-darker: #6d85df;
+  --ifm-color-primary-darkest: #5b6fc7;
+  --ifm-color-primary-light: #b9c8ff;
+  --ifm-color-primary-lighter: #d0d9ff;
+  --ifm-color-primary-lightest: #e7ebff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* ===== 侧边栏图标 ===== */
-.menu__link::before {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-right: 6px;
-  vertical-align: middle;
-  flex-shrink: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.icon-dungeon .menu__link::before {
-  background-image: url("/img/icons/副本与竞技场.svg");
-}
-.icon-npc .menu__link::before {
-  background-image: url("/img/icons/功能NPC.svg");
-}
-.icon-shop .menu__link::before {
-  background-image: url("/img/icons/商店与交易.svg");
-}
-.icon-gem .menu__link::before {
-  background-image: url("/img/icons/宝石.svg");
-}
-.icon-attr .menu__link::before {
-  background-image: url("/img/icons/属性.svg");
-}
-.icon-monster .menu__link::before {
-  background-image: url("/img/icons/怪物1.svg");
-}
-.icon-lottery .menu__link::before {
-  background-image: url("/img/icons/抽奖.svg");
-}
-.icon-rank .menu__link::before {
-  background-image: url("/img/icons/排行榜.svg");
-}
-.icon-forge .menu__link::before {
-  background-image: url("/img/icons/淬炼.svg");
-}
-.icon-equip .menu__link::before {
-  background-image: url("/img/icons/装备.svg");
-}
-
-/* 暗色模式下 SVG 图标反色（适用于纯黑色路径的图标） */
-[data-theme="dark"] .icon-dungeon .menu__link::before,
-[data-theme="dark"] .icon-npc .menu__link::before,
-[data-theme="dark"] .icon-shop .menu__link::before,
-[data-theme="dark"] .icon-gem .menu__link::before,
-[data-theme="dark"] .icon-attr .menu__link::before,
-[data-theme="dark"] .icon-monster .menu__link::before,
-[data-theme="dark"] .icon-lottery .menu__link::before,
-[data-theme="dark"] .icon-rank .menu__link::before,
-[data-theme="dark"] .icon-forge .menu__link::before,
-[data-theme="dark"] .icon-equip .menu__link::before {
-  filter: invert(1);
-}
-
-/* ===== 侧边栏分类标题加粗 ===== */
-.menu__list-item--collapsed > .menu__link--sublist,
-.menu__list-item > .menu__link--sublist {
-  font-weight: 700;
-}
-
-/* 侧边栏分类标题加粗 - 更精确的选择器 */
-.theme-doc-sidebar-item-category > div > a,
-.theme-doc-sidebar-item-category > div > button {
-  font-weight: 700 !important;
-  font-size: 0.95rem;
-}
-
-/* 特定文档侧边栏标题加粗 */
-.sidebar-bold > a {
-  font-weight: 700 !important;
-}
-
-/* 更新日志图标 */
-.sidebar-bold > a::before {
-  content: "";
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-right: 6px;
-  vertical-align: middle;
-  flex-shrink: 0;
-  background: url("/img/icons/更新.svg") center/contain no-repeat;
-}
-
-[data-theme="dark"] .sidebar-bold > a::before {
-  filter: invert(1);
-}
-
-/* ===== 侧边栏扁平分类风格 ===== */
-
-/* 分类标题上方加分隔线 */
-.theme-doc-sidebar-item-category {
-  margin-top: 4px;
-  padding-top: 4px;
-  border-top: 1px solid var(--ifm-color-emphasis-200);
-}
-
-/* 第一个分类不加分隔线 */
-.theme-doc-sidebar-item-category:first-of-type {
-  border-top: none;
-  padding-top: 0;
-}
-
-/* 分类标题样式：加粗、不作为链接点击 */
-.theme-doc-sidebar-item-category > .menu__list-item-collapsible > a,
-.theme-doc-sidebar-item-category > .menu__list-item-collapsible > button,
-.theme-doc-sidebar-item-category > a.menu__link {
-  font-weight: 700 !important;
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
-  color: var(--ifm-font-color-base) !important;
-  cursor: default;
-  padding-left: 0 !important;
-  padding-top: 10px;
-  padding-bottom: 6px;
-}
-
-/* 分类下子项：去掉左侧竖线缩进，轻量字重 */
-.theme-doc-sidebar-item-category > .menu__list {
-  border-left: none !important;
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-
-.theme-doc-sidebar-item-category > .menu__list .menu__link {
-  font-weight: 400;
-  padding-left: 0;
-}
+.navbar { border-bottom: 1px solid var(--ifm-color-emphasis-200); box-shadow: none; }
+.navbar__title { letter-spacing: -.02em; }
+.navbar__logo { width: 28px; height: 28px; }
+.footer { background: #091226; }

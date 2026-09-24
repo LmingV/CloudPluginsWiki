@@ -4,119 +4,109 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import styles from "./index.module.css";
 
-const knowledgeMap = [
+const products = [
     {
-        icon: "🌌",
-        title: "Echoverse · 回声宇宙",
-        description: "回声宇宙的世界观、角色、攻略与游戏资料。",
-        to: "/docs/echoverse"
+        eyebrow: "PLAYER EXPERIENCE",
+        title: "CloudCosmetics",
+        description: "把外观、称号与个性化展示交给一套清晰、可扩展的云端系统。",
+        accent: "violet",
+        icon: "✦",
+        to: "/docs/cosmetics"
     },
     {
-        icon: "🌅",
-        title: "DawnBefore · 黎明之前",
-        description: "黎明之前的世界观、角色、攻略与游戏资料。",
-        to: "/docs/dawnbefore"
-    },
-    {
-        icon: "📖",
-        title: "快速开始",
-        description: "了解如何参与编辑、本地运行与发布内容。",
-        to: "/docs/intro"
-    },
-    {
-        icon: "💬",
-        title: "加入社区",
-        description: "加入官方交流群，与其他玩家一起讨论。",
-        to: "https://qm.qq.com/q/oZ0eFOF91C"
+        eyebrow: "COMMUNICATION",
+        title: "CloudChat",
+        description: "跨频道聊天、格式化消息与权限控制，构建更有秩序的服务器交流体验。",
+        accent: "cyan",
+        icon: "⌁",
+        to: "/docs/chat"
     }
 ];
 
-const communityHighlights = [
-    {
-        title: "持续更新中",
-        meta: "@Community · 进行中",
-        description: "资料内容持续更新，跟随游戏最新版本和活动动态。"
-    },
-    {
-        title: "开源协作",
-        meta: "@Contributors · 持续",
-        description: "欢迎通过 GitHub 提交建议、报告错误或补充资料。"
-    },
-    {
-        title: "玩家友好",
-        meta: "@Guide · 特点",
-        description: "从零开始，清晰易懂地整理每一款游戏的核心资料。"
-    }
+const quickLinks = [
+    { label: "安装与升级", description: "从零开始部署插件", to: "/docs/intro", icon: "01" },
+    { label: "CloudCosmetics", description: "外观系统文档", to: "/docs/cosmetics", icon: "02" },
+    { label: "CloudChat", description: "聊天系统文档", to: "/docs/chat", icon: "03" }
 ];
 
 export default function Home() {
     const { siteConfig } = useDocusaurusContext();
 
     return (
-        <Layout title={siteConfig.title} description={siteConfig.tagline}>
+        <Layout title="CloudPlugins 官方 Wiki" description={siteConfig.tagline}>
             <main className={styles.page}>
-                {/* Hero */}
-                <div className={styles.heroWrapper}>
-                    <section className={styles.hero}>
+                <section className={styles.heroWrapper}>
+                    <div className={styles.heroGlow} />
+                    <div className={styles.hero}>
                         <div className={styles.heroCopy}>
-                            <span className={styles.heroSmall}>{siteConfig.title}</span>
-                            <h1>游戏资料百科</h1>
-                            <p>专注游戏资料整理的百科站点</p>
-                            <Link className={styles.heroButton} to="/docs/echoverse">
-                                快速开始 🎮
-                            </Link>
+                            <span className={styles.eyebrow}>CLOUDPLUGINS / OFFICIAL DOCS</span>
+                            <h1>让服务器体验<br /><span>更轻、更稳、更有质感。</span></h1>
+                            <p>CloudPlugins 云系列插件官方文档。这里汇总安装指南、配置说明与版本变更，帮助你快速把每一项能力用到位。</p>
+                            <div className={styles.heroActions}>
+                                <Link className={styles.primaryButton} to="/docs/intro">开始使用 <span>↗</span></Link>
+                                <Link className={styles.textButton} to="/docs/cosmetics">浏览插件 <span>→</span></Link>
+                            </div>
+                            <div className={styles.heroMeta}>
+                                <span><i className={styles.statusDot} /> 文档持续维护</span>
+                                <span>面向服主与开发者</span>
+                            </div>
                         </div>
-                        <div className={styles.heroImage}>
-                            <img src="/img/home.png" alt="InGames Wiki" />
+                        <div className={styles.heroVisual} aria-label="CloudPlugins 产品预览">
+                            <div className={styles.visualOrb} />
+                            <div className={styles.visualWindow}>
+                                <div className={styles.windowBar}><span /><span /><span /><b>cloudplugins</b></div>
+                                <div className={styles.windowBody}>
+                                    <div className={styles.windowKicker}>PLUGIN ECOSYSTEM</div>
+                                    <strong>Cloud<span>Plugins</span></strong>
+                                    <p>模块化 · 可配置 · 持续更新</p>
+                                    <div className={styles.signalRow}><span>SYNC STATUS</span><b>ONLINE</b></div>
+                                    <div className={styles.signalLine}><i /><i /><i /><i /><i /></div>
+                                </div>
+                            </div>
+                            <div className={styles.floatingTag}>✦ 官方维护</div>
                         </div>
-                    </section>
-                </div>
-
-                {/* 四大模块卡片 */}
-                <section className={styles.map}>
-                    <div className={styles.sectionHeading}>
-                        <h2>四大板块，覆盖游戏资料全流程</h2>
-                        <p>从游戏总览到攻略指南，从角色装备到技巧心得，每个环节都有清晰整理。</p>
                     </div>
-                    <div className={styles.mapGrid}>
-                        {knowledgeMap.map((item) => (
-                            <Link key={item.title} to={item.to} className={styles.mapCard}>
-                                <span className={styles.mapIcon}>{item.icon}</span>
-                                <h3>{item.title}</h3>
-                                <p>{item.description}</p>
-                                <span className={styles.mapAction}>查看详情 →</span>
+                </section>
+
+                <section className={styles.introSection}>
+                    <div className={styles.sectionHeading}>
+                        <span className={styles.eyebrow}>THE CLOUD ECOSYSTEM</span>
+                        <h2>一套文档，掌握整条插件产品线</h2>
+                        <p>从第一次安装到深度配置，CloudPlugins Wiki 将每个关键步骤整理成可执行的说明。</p>
+                    </div>
+                    <div className={styles.productGrid}>
+                        {products.map((product) => (
+                            <Link key={product.title} to={product.to} className={`${styles.productCard} ${styles[product.accent]}`}>
+                                <div className={styles.productTopline}><span>{product.eyebrow}</span><b>{product.icon}</b></div>
+                                <h3>{product.title}</h3>
+                                <p>{product.description}</p>
+                                <span className={styles.cardAction}>查看文档 <span>↗</span></span>
+                            </Link>
+                        ))}
+                        <div className={styles.productNote}>
+                            <span className={styles.noteIcon}>+</span>
+                            <div><strong>更多 Cloud 系列</strong><p>新插件与扩展能力将持续接入 Wiki。</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className={styles.quickSection}>
+                    <div className={styles.quickHeader}><span className={styles.eyebrow}>START HERE</span><h2>选择你的下一步</h2></div>
+                    <div className={styles.quickGrid}>
+                        {quickLinks.map((item) => (
+                            <Link key={item.label} to={item.to} className={styles.quickCard}>
+                                <span className={styles.quickNumber}>{item.icon}</span>
+                                <span><strong>{item.label}</strong><small>{item.description}</small></span>
+                                <span className={styles.quickArrow}>↗</span>
                             </Link>
                         ))}
                     </div>
                 </section>
 
-                {/* 社区 */}
                 <section className={styles.community}>
                     <div className={styles.communitySurface}>
-                        <div className={styles.communityIntro}>
-                            <h2>开源协作，持续更新</h2>
-                            <p>
-                                InGames Wiki 由玩家共同维护，持续更新内容。
-                                欢迎通过 GitHub 提交建议、报告问题或补充资料。
-                            </p>
-                            <div className={styles.communityCtas}>
-                                <Link className={styles.primaryButton} to="https://github.com/LmingV/InGames.github.io">
-                                    访问仓库
-                                </Link>
-                                <Link className={styles.secondaryButton} to="/docs/intro">
-                                    使用指南
-                                </Link>
-                            </div>
-                        </div>
-                        <ul className={styles.communityFeed}>
-                            {communityHighlights.map((item) => (
-                                <li key={item.title}>
-                                    <h3>{item.title}</h3>
-                                    <span>{item.meta}</span>
-                                    <p>{item.description}</p>
-                                </li>
-                            ))}
-                        </ul>
+                        <div><span className={styles.eyebrow}>BUILT IN THE OPEN</span><h2>遇到问题？一起把文档变得更好。</h2></div>
+                        <div className={styles.communityRight}><p>欢迎在 GitHub 提交 Issue、建议或配置案例，也可以加入交流群获取社区支持。</p><div className={styles.communityCtas}><Link className={styles.primaryButton} href="https://github.com/LmingV/CloudPlugins.github.io">访问 GitHub <span>↗</span></Link><Link className={styles.secondaryButton} href="https://qm.qq.com/q/qjKEhFUF0I">加入交流群</Link></div></div>
                     </div>
                 </section>
             </main>

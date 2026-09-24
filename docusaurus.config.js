@@ -5,18 +5,18 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'InGames Wiki',
-  tagline: '游戏资料百科',
-  favicon: 'img/home.png',
+  title: 'CloudPlugins 官方 Wiki',
+  tagline: 'CloudPlugins 云系列插件官方文档',
+  favicon: 'img/cloudplugins-mark.svg',
 
   // 站点最终访问地址（自定义域名）
-  url: 'https://InGames.wiki',
+  url: 'https://Cloud.plugins.wiki',
   // 自定义域名下部署在根路径
   baseUrl: '/',
 
   // GitHub Pages 部署配置
   organizationName: 'LmingV', // GitHub 用户名/组织名
-  projectName: 'InGames.github.io', // 仓库名
+  projectName: 'CloudPluginsWiki', // 仓库名
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
@@ -38,12 +38,12 @@ const config = {
           sidebarPath: './sidebars.js',
           // 每篇文档右上角“编辑此页”链接指向 GitHub
           editUrl:
-            'https://github.com/LmingV/InGames.github.io/tree/main/',
+            'https://github.com/LmingV/CloudPlugins.github.io/tree/main/',
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/LmingV/InGames.github.io/tree/main/',
+            'https://github.com/LmingV/CloudPlugins.github.io/tree/main/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -56,26 +56,31 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'InGames Wiki',
+        title: 'CloudPlugins Wiki',
         logo: {
-          alt: 'InGames Wiki Logo',
-          src: 'img/home.png',
+          alt: 'CloudPlugins Wiki Logo',
+          src: 'img/cloudplugins-mark.svg',
         },
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'echoverseSidebar',
+            sidebarId: 'cosmeticsSidebar',
             position: 'left',
-            label: 'Echoverse-回声宇宙',
+            label: 'CloudCosmetics',
           },
           {
             type: 'docSidebar',
-            sidebarId: 'dawnbeforeSidebar',
+            sidebarId: 'chatSidebar',
             position: 'left',
-            label: 'DawnBefore-黎明之前',
+            label: 'CloudChat',
           },
           {
-            href: 'https://github.com/LmingV/InGames.github.io',
+            to: '/docs/intro',
+            label: '快速开始',
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/LmingV/CloudPlugins.github.io',
             label: 'GitHub',
             position: 'right',
           },
@@ -91,27 +96,31 @@ const config = {
                 label: '快速开始',
                 to: '/docs/intro',
               },
+              {
+                label: 'CloudCosmetics',
+                to: '/docs/cosmetics',
+              },
+              {
+                label: 'CloudChat',
+                to: '/docs/chat',
+              },
             ],
           },
           {
             title: '更多',
-            items: [              
+            items: [
               {
-                label: '官方交流群-①',
-                href: 'https://qm.qq.com/q/oZ0eFOF91C',
+                label: '加入交流群',
+                href: 'https://qm.qq.com/q/qjKEhFUF0I',
               },
               {
-                label: '官方交流群-②',
-                href: 'https://qm.qq.com/q/Q8CDwvVzW',
-              },              
-              {
                 label: 'GitHub',
-                href: 'https://github.com/LmingV/InGames.github.io',
+                href: 'https://github.com/LmingV/CloudPlugins.github.io',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} InGames Wiki. 最终解释权归InGames团队所有`,
+        copyright: `Copyright © ${new Date().getFullYear()} CloudPlugins Wiki. 最终解释权归CloudPlugins团队所有`,
       },
       prism: {
         theme: prismThemes.github,

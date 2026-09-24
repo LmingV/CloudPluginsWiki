@@ -4,45 +4,30 @@ sidebar_position: 1
 
 # 快速开始
 
-欢迎来到 **InGames Wiki**，这里是游戏资料的百科站点。
+欢迎来到 **CloudPlugins 官方 Wiki**。这里是 CloudCosmetics、CloudChat 及后续云系列插件的统一文档入口，面向服务器服主、管理员与开发者。
 
-## 环境要求
+## 01 · 安装插件
 
-在本地开发前，请确保安装了 [Node.js](https://nodejs.org/en/download/) 18.0 或更高版本。
+1. 确认服务端运行环境与当前插件版本要求一致。
+2. 将对应的 `.jar` 文件放入服务端的 `plugins/` 目录。
+3. 重启服务端，检查控制台是否出现 CloudPlugins 的加载信息。
+4. 进入服务器执行插件提供的帮助命令，确认权限与功能已生效。
 
-## 本地运行
+> 建议在升级前备份 `plugins/` 目录中的配置文件。跨大版本升级时，请先阅读对应插件的更新说明。
 
-在项目根目录执行以下命令安装依赖并启动本地预览：
+## 02 · 选择插件文档
 
-```bash
-npm install
-npm start
-```
+- [CloudCosmetics](./cosmetics)：外观、称号与个性化展示能力。
+- [CloudChat](./chat)：聊天频道、格式化消息与权限控制能力。
 
-浏览器会自动打开 `http://localhost:3000`，修改文档后页面会实时刷新。
+## 03 · 配置与排错
 
-## 添加内容
+插件首次启动后，配置文件会写入各自的插件目录。修改配置后请按文档要求重载或重启服务端；如果功能没有生效，优先检查版本、权限节点和控制台报错。
 
-只需在 `docs/` 目录下新建 Markdown（`.md`）文件，侧边栏会自动生成对应的条目。例如：
+## 文档约定
 
-```markdown
----
-sidebar_position: 2
----
+文档中的命令、权限节点和配置键使用等宽字体标记。示例值用于说明结构，生产环境请根据你的服务端版本和实际需求调整。
 
-# 我的新页面
+## 获取支持
 
-这里写正文内容……
-```
-
-## 发布上线
-
-把改动推送到 GitHub 的 `main` 分支后，GitHub Actions 会自动构建并发布到 `https://InGames.wiki`，无需任何手动操作。
-
-```bash
-git add .
-git commit -m "更新内容"
-git push
-```
-
-稍等一两分钟，站点就会更新。
+你可以在 [GitHub](https://github.com/LmingV/CloudPlugins.github.io) 提交问题与改进建议，也可以加入[官方交流群](https://qm.qq.com/q/qjKEhFUF0I) 获取社区支持。
