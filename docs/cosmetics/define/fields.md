@@ -40,7 +40,9 @@ star_wings:                       # 时装 ID
     material: FEATHER
     custom-model-data: 0
     item-model: ''
-  slot: 0                         # 排序，越小越前
+  order: 10                       # 排序，越小越前（旧版写法 slot 仍可用）
+  menu-slot: 8                    # 可选：固定格位（从 0 起算）
+  menu-page: 1                    # 可选：配合 menu-slot 指定页码（从 1 起算）
   scale: 1.0                      # 模型倍率
   follow-rotation: true           # 是否跟随玩家朝向
   offset: { x: 0.0, y: 0.0, z: 0.25 }
@@ -60,7 +62,9 @@ star_wings:                       # 时装 ID
 | `permission` | 默认 `cloudcosmetics.cosmetic.<ID>`，供 `{permission}` 显示 | 全部 |
 | `lore` | 衣橱与商城说明，见 [Lore 与时装卡](./lore-card.md) | 全部 |
 | `icon` | 菜单图标，**与身上显示的模型无关** | 全部 |
-| `slot` | 在衣橱 / 商城中的排序，数值越小越前面；相同时按 ID 排序 | 全部 |
+| `order` | 在衣橱 / 商城中的排序，数值越小越前面；相同时按 ID 排序。旧写法 `slot` 仍可用 | 全部 |
+| `menu-slot` | 固定放在指定格位（从 0 起算），见[菜单与商城](../menus.md#固定格位) | 全部 |
+| `menu-page` | 配合 `menu-slot` 指定页码（从 1 起算），默认 1 | 全部 |
 | `scale` | 模型倍率，最小 0.01 | `meg` `display` `body` |
 | `follow-rotation` | 跟随玩家转向，见[转向与跟随](./rotation-follow.md) | `meg` `display` `body` |
 | `offset` | 位置偏移，按玩家朝向计算 | `meg` `display` `body` |

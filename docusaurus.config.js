@@ -65,8 +65,8 @@ const config = {
         respectPrefersColorScheme: false,
       },
       announcementBar: {
-        id: 'cc-2-10-0',
-        content: '✦ 云时装 <b>2.10.0</b> 已发布：不死图腾冷却提示（BOSS 血条 / 快捷栏 / PlaceholderAPI）· 默认配置全面简体中文 · <a href="/docs/cosmetics/changelog">查看更新记录 →</a>',
+        id: 'cc-2-10-2',
+        content: '✦ 云时装 <b>2.10.2</b> 已发布：时装菜单固定格位与排序 · 修复较大 offset 被误判重建 · <a href="/docs/cosmetics/changelog">查看更新记录 →</a>',
         isCloseable: true,
       },
       docs: {

@@ -15,7 +15,29 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog entries={[
   {
-    version: '2.10.0', date: '2026-09-25', latest: true, title: '图腾冷却提示 · 简体中文默认配置',
+    version: '2.10.2', date: '2026-09-25', latest: true, title: '时装菜单排版',
+    items: [
+      ['new', '新增 `order`：设置时装排序，数字越小越靠前'],
+      ['new', '新增 `menu-slot`：把时装固定在指定格位（从 0 起算）'],
+      ['new', '新增 `menu-page`：配合 `menu-slot` 指定固定页码（从 1 起算）'],
+      ['new', '衣橱与商城支持固定格位与自动排列混合使用'],
+      ['compat', '旧 `slot` 继续作为排序值，未填 `order` 时沿用'],
+      ['opt', '未设置 `menu-slot` 的时装按 `content-slots` 填入剩余空格并自动分页'],
+      ['fix', '固定格位冲突、超出范围或占用按钮时记录警告并改为自动排列，不会覆盖其他物品'],
+      ['fix', '没有可用自动格位时显示错误提示并停止打开菜单'],
+    ],
+  },
+  {
+    version: '2.10.1', date: '2026-09-25', title: '模型偏移与配置加载防护',
+    items: [
+      ['fix', '模型位置检查纳入配置的 XYZ 偏移距离，较大偏移不再被误判为位置异常而反复重建'],
+      ['fix', '模型初始化后若挂载对象被替换，重新应用动态偏移（玩家与 NPC 时装）'],
+      ['opt', '配置文件按文件名顺序加载；不同文件出现重复时装 ID 时保留第一个有效定义，跳过其余并记录警告'],
+      ['opt', '加载日志新增配置文件路径、时装 ID、XYZ 偏移与模型大小，方便排查配置未生效的问题'],
+    ],
+  },
+  {
+    version: '2.10.0', date: '2026-09-25', title: '图腾冷却提示 · 简体中文默认配置',
     items: [
       ['new', '不死图腾冷却提示：`totem-notify.mode` 可选 `bossbar`（BOSS 血条，随冷却缩短）、`actionbar`（快捷栏上方文字）或 `none`'],
       ['new', '图腾触发、冷却中、冷却结束三种提示与时间格式全部可在 `messages.yml` 的 `totem.*` 自定义，留空即不发送'],

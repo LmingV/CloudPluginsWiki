@@ -81,9 +81,29 @@ buttons:
   next:     { enabled: true, slot: 53, material: ARROW,    name: '&e下一页' }
 ```
 
-- 时装按 `slot` 数值从小到大、依次填入 `content-slots`；超过 `items-per-page` 自动分页。
+- 时装按 `order`（旧写法 `slot`）从小到大、依次填入 `content-slots`；超过 `items-per-page` 自动分页。
 - `items-per-page` 不能超过 `content-slots` 的格数；按钮位置请避开内容格。
 - `{category}` `{page}` `{pages}` 会替换为分类名称、当前页、总页数。
+
+### 固定格位
+
+2.10.2 起，可以把特定时装固定在某一页的某一格，其余时装照常自动排列：
+
+```yaml title="cosmetics/eternal.yml"
+samsara_scroll:
+  type: meg
+  name: '轮回生死轴'
+  order: 10
+  menu-slot: 8     # 第一排第九格（从 0 起算）
+  menu-page: 1     # 第一页（从 1 起算）
+```
+
+| 规则 | 说明 |
+| --- | --- |
+| 混合排列 | 设了 `menu-slot` 的时装先放到指定位置，其余时装依 `order` 填入剩下的 `content-slots` |
+| 冲突保护 | 格位重复、超出菜单范围或占到按钮位置时，控制台记录警告，该时装改为自动排列，不会覆盖其他物品 |
+| 空间不足 | 没有可用的自动格位时，提示错误并停止打开菜单，请增加 `content-slots` 或调整固定格位 |
+| 适用范围 | 衣橱与商城都支持 |
 
 ## 商城 shop.yml
 

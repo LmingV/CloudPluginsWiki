@@ -40,7 +40,7 @@ SQLite、MySQL 驱动与 MiniMessage 由服务端在首次启动时自动下载�
 ## 全新安装
 
 1. 安装必需的前置插件。
-2. 把 `CloudCosmetics-2.10.0.jar` 放进 `plugins/`。同一个服务端**只能保留一份**云时装 JAR。
+2. 把 `CloudCosmetics-2.10.2.jar` 放进 `plugins/`。同一个服务端**只能保留一份**云时装 JAR。
 3. 启动服务端，自动生成以下文件（首次生成的配置、菜单与提示消息全部为**简体中文**）：
 
 ```text
