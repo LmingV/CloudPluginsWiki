@@ -44,6 +44,27 @@ const sidebars = {
       ],
     },
   ],
+  shopSidebar: [
+    {
+      type: 'category', label: '商店', collapsible: false,
+      items: ['shop/index', 'shop/terms'],
+    },
+    {
+      type: 'category', label: '时装', collapsible: false,
+      link: { type: 'doc', id: 'shop/cosmetics/index' },
+      items: ['shop/cosmetics/samsara-scroll'],
+    },
+    {
+      type: 'category', label: '技能', collapsible: false,
+      link: { type: 'doc', id: 'shop/skills' },
+      items: [],
+    },
+    {
+      type: 'category', label: '武器', collapsible: false,
+      link: { type: 'doc', id: 'shop/weapons' },
+      items: [],
+    },
+  ],
   chatSidebar: ['chat/index'],
 };
 

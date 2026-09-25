@@ -93,6 +93,12 @@ const config = {
             label: 'CloudChat',
           },
           {
+            type: 'docSidebar',
+            sidebarId: 'shopSidebar',
+            position: 'left',
+            label: '🛒 模型商店',
+          },
+          {
             to: '/docs/cosmetics/changelog',
             label: '更新记录',
             position: 'right',

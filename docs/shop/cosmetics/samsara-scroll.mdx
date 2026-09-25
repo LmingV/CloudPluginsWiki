@@ -1,0 +1,106 @@
+---
+last_update:
+  date: 2026-09-25
+  author: CloudPlugins 团队
+sidebar_position: 1
+title: 轮回生死轴
+description: 轮回生死轴 · 四段形态、三组动画的 ModelEngine 背饰时装，附赠「生死轮回」动态称号与图标。
+---
+
+# 轮回生死轴
+
+<div className="cc-shields">
+  <span className="cc-shield"><i>分类</i><b>时装 · 背饰</b></span>
+  <span className="cc-shield g"><i>适用</i><b>ModelEngine R4</b></span>
+  <span className="cc-shield v"><i>形态</i><b>4 段</b></span>
+  <span className="cc-shield o"><i>动画</i><b>3 组</b></span>
+  <span className="cc-shield p"><i>价格</i><b>60R</b></span>
+</div>
+
+> 黑白双龙盘绕八卦法轮，阴阳卷轴流转不息——象征生死轮回的永恒守护。
+
+<div className="cc-video cc-video-square">
+  <video autoPlay loop muted playsInline preload="auto" poster="/video/shop/samsara-scroll-poster.webp">
+    <source src="/video/shop/samsara-scroll.mp4" type="video/mp4" />
+  </video>
+  <span className="cc-video-tag">● 预览视频 · 带水印</span>
+</div>
+
+## 商品内容
+
+| 内容 | 说明 |
+| --- | --- |
+| 🌀 模型 · 四段形态 | 形态一 / 形态二 / 形态三 / 完全体，共 4 个 `.bbmodel`，可做成升级或进阶系统 |
+| 🏷️ 赠品 · 动态称号 | 「生死轮回」10 帧动态称号序列帧 |
+| 🖼️ 赠品 · 图标 | 卷轴物品图标，可用于衣橱图标或时装卡 |
+
+## 四段形态
+
+| 形态 | 方块数 | 骨骼数 | 建议用途 |
+| --- | ---: | ---: | --- |
+| 形态一 | 195 | 59 | 入门档次、低配服务器 |
+| 形态二 | 850 | 86 | 中阶奖励 |
+| 形态三 | 1,883 | 188 | 高阶奖励 |
+| 完全体 | 2,292 | 455 | 顶级收藏、活动限定 |
+
+四个形态动画一致，可以让玩家逐级进阶，从形态一一路收集到完全体。
+
+## 动画
+
+| 动画名称 | 类型 | 说明 |
+| --- | --- | --- |
+| `idle` | 循环 | 待机动画 |
+| `living_scroll_loop` | 循环 | 卷轴流转动画，适合作为穿戴时的常驻动画 |
+| `scroll_summon_complete` | 单次 | 召唤登场演出 |
+
+## 赠品预览
+
+<div className="cc-preview-row">
+  <figure>
+    <img src="/img/shop/samsara-title-preview.webp" alt="生死轮回 动态称号（预览）" />
+    <figcaption>「生死轮回」动态称号 · 10 帧</figcaption>
+  </figure>
+  <figure>
+    <img src="/img/shop/samsara-icon-preview.webp" alt="卷轴图标（预览）" />
+    <figcaption>卷轴图标</figcaption>
+  </figure>
+</div>
+
+:::note 预览素材带有水印
+页面上的图片与视频均为带水印的预览版本，实际交付文件不含水印。
+:::
+
+## 搭配云时装使用
+
+放入 `plugins/ModelEngine/blueprints/` 并执行 `/meg reload` 后，在[云时装](/docs/cosmetics)中加入：
+
+```yaml title="cosmetics/eternal.yml"
+samsara_scroll:
+  type: meg
+  name: '<gradient:#FFF7C2:#69ECFF>[永恒]</gradient> 轮回生死轴'
+  model: your_model_id          # 改成导入后的 ModelEngine 模型 ID
+  scale: 1.8
+  follow-rotation: true
+  animations:
+    idle: living_scroll_loop
+  totem: true                    # 可选：穿戴时获得不死图腾保命
+  totem-cooldown: 300
+  totem-health: 8
+```
+
+也可以不用云时装，搭配 MythicMobs / 其他 ModelEngine 插件使用。
+
+## 购买
+
+<div className="cc-buy">
+  <div>
+    <div className="cc-buy-price">60R</div>
+    <div className="cc-buy-note">一次购买 · 永久使用 · 含后续修复更新</div>
+  </div>
+  <a className="cc-buy-btn" href="https://qm.qq.com/q/qjKEhFUF0I" target="_blank" rel="noopener noreferrer">加入 QQ 群购买 →</a>
+</div>
+
+:::danger 禁止倒卖
+本模型仅授权购买者本人的服务器使用，**严禁转售、分享或公开发布**。
+每一份售出的文件都带有**购买者专属的特殊标记**，可追溯来源。详见[购买须知与版权声明](../terms.md)。
+:::
