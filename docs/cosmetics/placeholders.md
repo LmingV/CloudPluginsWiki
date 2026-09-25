@@ -1,6 +1,6 @@
 ---
 last_update:
-  date: 2026-09-25
+  date: 2026-09-26
   author: CloudPlugins 团队
 sidebar_position: 13
 title: PlaceholderAPI 变量
@@ -19,7 +19,7 @@ title: PlaceholderAPI 变量
 | `%cloudcosmetics_totem_ready%` | 图腾是否就绪 | `true` / `false` |
 | `%cloudcosmetics_totem_status%` | 就绪显示 `totem.status-ready`，冷却中显示 `totem.status-cooling` | `已就绪` / `4分32秒` |
 | `%cloudcosmetics_totem_wearing%` | 当前穿戴的时装是否带有图腾 | `true` / `false` |
-| `%cloudcosmetics_equipped%` | 当前穿戴的时装 ID，未穿戴为空 | `samsara_scroll` |
+| `%cloudcosmetics_equipped%` | 当前穿戴的时装 ID，未穿戴为空；[多件穿戴](./loadout.md)时为最后穿戴的一件 | `samsara_scroll` |
 | `%cloudcosmetics_equipped_name%` | 当前穿戴的时装名称 | `轮回生死轴` |
 
 ## 使用示例

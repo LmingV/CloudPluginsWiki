@@ -1,6 +1,6 @@
 ---
 last_update:
-  date: 2026-09-25
+  date: 2026-09-26
   author: CloudPlugins 团队
 sidebar_position: 2
 title: 四种渲染模式
@@ -120,6 +120,12 @@ sky_crown:
 :::caution 同一槽位只能显示一件
 原装备仍然存在且属性照常生效，但客户端只能显示时装外观。想保留原头盔外观，请改用 `body`。
 :::
+
+- 帽子类素材用 `HEAD`；适合副手持握姿势的素材可用 `OFF_HAND`。
+- 玩家**真实手持**主手 / 副手物品时优先显示真实物品，放下后恢复时装，不会遮住盾牌、图腾或工具（2.10.6 起）。
+- 创造模式下本人看不到自己的虚拟装备，避免展示物品混进创造背包；其他玩家仍可看到，回到生存模式后恢复。
+- 不支持的槽位会在加载时于控制台警告。
+- 开启[多件穿戴](../loadout.md)时，两件 `equipment` 时装占用同一槽位会按 `equipment.slot-conflict` 替换或拒绝。
 
 `equipment` 不使用 `scale`、`offset`、`animation`、`follow-rotation`。
 

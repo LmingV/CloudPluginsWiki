@@ -1,6 +1,6 @@
 ---
 last_update:
-  date: 2026-09-25
+  date: 2026-09-26
   author: CloudPlugins 团队
 sidebar_position: 1
 title: 时装文件与通用字段
@@ -19,7 +19,7 @@ cosmetics/
 └── eternal.yml     → 分类 eternal
 ```
 
-文件内每个最外层键是一件时装。分类要出现在衣橱里，还需在 [`menus/categories.yml`](../menus.md) 中登记同名分类。
+文件内每个最外层键是一件时装。分类要出现在衣橱里，还需在 [`menus/categories.yml`](../menus.md) 中登记同名分类。开启[多件穿戴](../loadout.md)后，分类也是计算「每类穿几件」的单位。
 
 :::caution 时装 ID 全局唯一
 时装卡、数据库、指令都使用时装 ID。即使在不同文件中，**ID 也不能重复**，也不要在上线后修改已发放的 ID。
@@ -50,6 +50,7 @@ star_wings:                       # 时装 ID
   attributes:                     # 拥有即生效的属性 BUFF
     max-health: 10
   totem: false                    # 不死图腾（可选）
+  equip-group: full-body          # 可选：互斥群组，同组只保留新穿戴的一件
   shop: { enabled: true, price: 1000 }
   card: { ... }                   # 可选，覆盖默认时装卡外观
 ```
@@ -71,6 +72,7 @@ star_wings:                       # 时装 ID
 | `animation` / `animations` | 动画，见[动画](./animations.md) | `meg` |
 | `attributes` | 属性 BUFF，见[属性 BUFF](./attributes.md) | 全部 |
 | `totem` 等 | 不死图腾，见[不死图腾](./totem.mdx) | 全部 |
+| `equip-group` | 互斥群组（2.10.8 起），同组时装跨分类也只能穿一件，见[多件穿戴](../loadout.md#互斥群组-equip-group) | 全部 |
 | `shop` | 商城上架与价格，见[菜单与商城](../menus.md) | 全部 |
 | `card` | 时装卡外观，见 [Lore 与时装卡](./lore-card.md) | 全部 |
 

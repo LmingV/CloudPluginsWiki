@@ -38,6 +38,7 @@ const sidebars = {
       items: [
         'cosmetics/menus',
         'cosmetics/slots',
+        'cosmetics/loadout',
         'cosmetics/config',
         'cosmetics/database',
         'cosmetics/placeholders',

@@ -1,6 +1,6 @@
 ---
 last_update:
-  date: 2026-09-25
+  date: 2026-09-26
   author: CloudPlugins 团队
 sidebar_position: 10
 title: 菜单与商城
@@ -28,12 +28,14 @@ rows: 3
 
 categories:
   wings:                 # 必须与 cosmetics/ 内的文件名相同（不含 .yml）
+    max-equipped: 1      # 2.10.8 起：该分类最多同穿几件（per-category 模式），0 = 禁止
     slot: 11
     material: PAPER
     custom-model-data: 0
     name: '&d史诗时装'
     lore: ['&7点击查看史诗时装']
   legendary:
+    max-equipped: 1
     slot: 13
     material: PAPER
     name: '&6传说时装'

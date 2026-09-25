@@ -1,6 +1,6 @@
 ---
 last_update:
-  date: 2026-09-25
+  date: 2026-09-26
   author: CloudPlugins 团队
 sidebar_position: 11
 title: 主配置 config.yml
@@ -18,6 +18,11 @@ menu:
   rows: 6
 
 render-distance: 64
+
+equipment:
+  mode: single
+  slot-conflict: replace
+  max-equipped: 5
 
 follow-watchdog:
   enabled: true
@@ -90,6 +95,9 @@ database:
 
 | 键 | 默认 | 说明 |
 | --- | --- | --- |
+| `equipment.mode` | `single` | `single` 全身一件；`per-category` 每个分类分别穿戴，见[多件穿戴](./loadout.md) |
+| `equipment.slot-conflict` | `replace` | 原生装备槽冲突：`replace` 替换旧时装 / `deny` 拒绝新时装 |
+| `equipment.max-equipped` | `5` | `per-category` 模式下的全身总上限，达到后拒绝新增 |
 | `render-distance` | `64` | 其他玩家距离穿戴者超过此格数就看不到时装（最小 8，建议 32 – 96） |
 | `follow-watchdog.*` | 见上 | 骨骼冻结检测，见[转向与跟随](./define/rotation-follow.md#三重自我修复) |
 | `animation.distance-optimization` | `false` | `true` 时交给 ModelEngine 远距离降频 |

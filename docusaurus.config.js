@@ -65,8 +65,8 @@ const config = {
         respectPrefersColorScheme: false,
       },
       announcementBar: {
-        id: 'cc-2-10-5',
-        content: '✦ 云时装 <b>2.10.5</b> 已发布：修复 ModelEngine R4.1 偏移失效与 MEG 偏移方向 · CE BODY 显示模式 · <a href="/docs/cosmetics/changelog">查看更新记录 →</a>',
+        id: 'cc-2-10-8',
+        content: '✦ 云时装 <b>2.10.8</b> 已发布：多件穿戴（按分类同穿）· 修复 BODY 闪烁与上下跳动 · <a href="/docs/cosmetics/changelog">查看更新记录 →</a>',
         isCloseable: true,
       },
       docs: {
