@@ -37,6 +37,7 @@ const sidebars = {
       type: 'category', label: '系统设置', collapsible: false,
       items: [
         'cosmetics/menus',
+        'cosmetics/slots',
         'cosmetics/config',
         'cosmetics/database',
         'cosmetics/placeholders',

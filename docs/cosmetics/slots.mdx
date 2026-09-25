@@ -1,0 +1,151 @@
+---
+last_update:
+  date: 2026-09-25
+  author: CloudPlugins 团队
+sidebar_position: 10.5
+title: 格位配置指南
+description: 衣橱与商城的格位编号、content-slots、order、menu-slot、menu-page 完整说明与示例。
+---
+
+import SlotGrid from '@site/src/components/SlotGrid';
+
+# 格位配置指南
+
+本页说明衣橱（`menus/wardrobe.yml`）与商城（`menus/shop.yml`）中**每件时装会出现在哪一格**，以及如何用 `order`、`menu-slot`、`menu-page` 精确控制排版（2.10.2 起）。
+
+## 格位编号
+
+箱子菜单每排 9 格，**从 0 开始**，由左到右、由上到下编号。菜单总格数 = `rows × 9`（`rows` 最多 6，也就是 0 – 53）。
+
+```text
+格位 = (第几排 − 1) × 9 + (第几格 − 1)
+例：第 1 排第 9 格 = 0×9 + 8 = 8      第 3 排正中间 = 2×9 + 4 = 22
+```
+
+<SlotGrid
+  title="6 排菜单的格位编号（把鼠标移到格子上查看）"
+  rows={6}
+  content={[]}
+/>
+
+## 四个相关设置
+
+| 设置 | 写在哪里 | 作用 |
+| --- | --- | --- |
+| `content-slots` | `menus/wardrobe.yml`、`menus/shop.yml` | 自动排列可以使用的格位，**按列表顺序**依次填入 |
+| `items-per-page` | 同上 | 每页最多几件时装（含固定格位的时装），不能超过 `content-slots` 的数量 |
+| `order` | 每件时装 | 排序，数字越小越靠前；旧写法 `slot` 仍然有效 |
+| `menu-slot` / `menu-page` | 每件时装 | 把这件时装固定在某一页的某一格 |
+
+:::caution `slot` 不是格位
+时装配置里的 `slot`（旧写法）和 `order` 一样只是**排序值**，不会把时装放到那一格。要固定格位请用 `menu-slot`。
+:::
+
+## 示例一：默认衣橱
+
+默认配置使用前 5 排（0 – 44）放时装，最后一排放按钮。时装按 `order` 从小到大依次填入 0、1、2……
+
+<SlotGrid
+  title="默认 wardrobe.yml"
+  rows={6}
+  content={[...Array(45).keys()]}
+  buttons={{ 45: '上一页', 48: '返回', 50: '卸下', 53: '下一页' }}
+  auto={{ 0: '时装1', 1: '时装2', 2: '时装3', 3: '时装4' }}
+/>
+
+```yaml title="menus/wardrobe.yml"
+rows: 6
+items-per-page: 45
+content-slots: [0, 1, 2, ..., 44]   # 实际需写出全部数字
+buttons:
+  previous: { slot: 45 }
+  back:     { slot: 48 }
+  unequip:  { slot: 50 }
+  next:     { slot: 53 }
+```
+
+## 示例二：带边框的衣橱
+
+只让时装出现在中间区域，四周留作边框，看起来更整齐。
+
+<SlotGrid
+  title="中间 4 排 × 7 格 = 28 个位置"
+  rows={6}
+  content={[10,11,12,13,14,15,16, 19,20,21,22,23,24,25, 28,29,30,31,32,33,34, 37,38,39,40,41,42,43]}
+  buttons={{ 45: '上一页', 48: '返回', 50: '卸下', 53: '下一页' }}
+  auto={{ 10: '时装1', 11: '时装2', 12: '时装3' }}
+/>
+
+```yaml title="menus/wardrobe.yml"
+rows: 6
+items-per-page: 28
+content-slots: [10, 11, 12, 13, 14, 15, 16,
+                19, 20, 21, 22, 23, 24, 25,
+                28, 29, 30, 31, 32, 33, 34,
+                37, 38, 39, 40, 41, 42, 43]
+```
+
+`content-slots` 的**书写顺序就是填入顺序**。想让时装竖着排，把数字改成按列书写即可（例如 `10, 19, 28, 37, 11, 20, ...`）。
+
+## 示例三：固定格位 + 自动排列
+
+把招牌时装固定在最上排正中间，其余时装照常自动排列。
+
+<SlotGrid
+  title="轮回生死轴固定在格位 4，其余自动填入中间区域"
+  rows={6}
+  content={[10,11,12,13,14,15,16, 19,20,21,22,23,24,25, 28,29,30,31,32,33,34, 37,38,39,40,41,42,43]}
+  buttons={{ 45: '上一页', 48: '返回', 50: '卸下', 53: '下一页' }}
+  fixed={{ 4: '轮回' }}
+  auto={{ 10: '时装1', 11: '时装2', 12: '时装3' }}
+/>
+
+```yaml title="cosmetics/eternal.yml"
+samsara_scroll:
+  type: meg
+  name: '轮回生死轴'
+  order: 1
+  menu-slot: 4      # 第 1 排第 5 格（正中间）
+  menu-page: 1      # 第 1 页
+```
+
+:::tip 固定格位可以不在 content-slots 里
+`menu-slot` 只要在菜单范围内（`0` 到 `rows × 9 − 1`）且**没有被按钮占用**，就可以使用。所以像上图的格位 4 虽然是边框，也能放固定时装。
+:::
+
+## 排列规则
+
+插件打开菜单时依这个流程排版：
+
+1. 所有时装按 `order` 从小到大排序（相同时按 ID）。
+2. 有 `menu-slot` 的时装先放到指定的页与格。
+3. 其余时装依序填入 `content-slots` 中**还空着**的格位。
+4. 当前页满了（达到 `items-per-page`，**固定格位的时装也算在内**）就换到下一页继续。
+
+| 情况 | 结果 |
+| --- | --- |
+| 两件时装设了同一页同一格 | `order` 较小的保住格位，另一件改为自动排列，控制台警告 |
+| `menu-slot` 超出菜单范围 | 改为自动排列，控制台警告 |
+| `menu-slot` 与按钮格位相同 | 改为自动排列，控制台警告 |
+| `menu-page` 小于 1 | 改为自动排列，控制台警告 |
+| `menu-page: 3` 但前两页没有东西 | 仍会产生第 1、2 页，玩家翻页后才看到 |
+| 所有 `content-slots` 都被按钮占用，但仍有自动排列的时装 | 提示错误并停止打开菜单 |
+
+### 哪些格位算「按钮占用」
+
+| 菜单 | 保留的按钮 |
+| --- | --- |
+| 衣橱 `wardrobe.yml` | `previous`、`next`、`back`、`unequip`（`enabled: false` 的按钮不保留） |
+| 商城 `shop.yml` | `previous`、`next`、`back`（始终保留） |
+
+默认商城按钮位置为 `45`（上一页）、`49`（返回）、`53`（下一页）。
+
+## 常见错误
+
+| 现象 | 原因与处理 |
+| --- | --- |
+| 设了 `slot: 8` 却没有出现在第 9 格 | `slot` 只是排序，改用 `menu-slot: 8` |
+| 时装出现在奇怪的位置 | 检查控制台是否有 `menu-slot conflict` 或 `invalid/reserved menu-slot` 警告 |
+| 打不开菜单并提示没有可用格位 | 按钮位置与 `content-slots` 全部重叠，调整其中之一 |
+| 每页时装比 `content-slots` 少 | `items-per-page` 设得比较小，或固定格位的时装占掉了名额 |
+| 修改后没变化 | 执行 `/cosmetic reload` 后**重新打开**菜单 |
