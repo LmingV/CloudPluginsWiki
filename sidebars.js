@@ -67,6 +67,37 @@ const sidebars = {
       items: [],
     },
   ],
+  titleSidebar: [
+    {
+      type: 'category', label: '基础', collapsible: false,
+      items: [
+        'title/index',
+        'title/quick-start',
+        'title/commands',
+        'title/permissions',
+        'title/placeholders',
+        'title/faq',
+        'title/changelog',
+      ],
+    },
+    {
+      type: 'category', label: '称号配置', collapsible: false,
+      items: [
+        'title/frames',
+        'title/obtain',
+        'title/stats',
+        'title/resource-pack',
+      ],
+    },
+    {
+      type: 'category', label: '系统设置', collapsible: false,
+      items: [
+        'title/menus',
+        'title/config',
+        'title/api',
+      ],
+    },
+  ],
   chatSidebar: ['chat/index'],
 };
 

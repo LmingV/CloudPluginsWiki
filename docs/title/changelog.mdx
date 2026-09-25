@@ -1,0 +1,37 @@
+---
+last_update:
+  date: 2026-09-26
+  author: CloudPlugins 团队
+sidebar_position: 20
+title: 更新记录
+description: CloudTitle 云称号全部版本的更新记录与发布日期。
+---
+
+import Changelog from '@site/src/components/Changelog';
+
+# 更新记录
+
+每个版本的更新内容与发布日期。
+
+<Changelog entries={[
+  {
+    version: '1.0.0', date: '2026-09-26', latest: true, title: '首个正式版本',
+    items: [
+      ['new', '序列帧称号：文件夹内 PNG 按文件名数字顺序播放并循环，单张图为静态称号，GIF 自动拆帧；每个称号可设 fps（1 – 20），无需 mcmeta'],
+      ['new', '大图 / 小图两种尺寸：`%clt_use%` 与 `%clt_use_small%`，小图可指定文件夹、使用 `<文件夹>_small` 或自动缩小'],
+      ['new', '静态变量 `%clt_use_static%` / `%clt_use_small_static%`，以及名称、ID、拥有状态、数量、剩余时间、悬停文本等共 10 个变量'],
+      ['new', '资源包自动生成（文件夹 + zip），字符表持久保存；自动合并到 ItemsAdder / CraftEngine / Nexo，使用 U+F0000 起的字符区不与其冲突'],
+      ['new', '称号仓库 `/clt open`、称号商店 `/clt shop`、管理界面 `/clt view`、展示界面 `/clt showcase`，全部可自定义并自动分页'],
+      ['new', '称号商店：Vault 金币、PlayerPoints 点券、物品（原版 / MMOItems / ItemsAdder / CraftEngine / Nexo）任意组合，二次点击确认，缺一样全部不扣'],
+      ['new', '称号卡：右键使用、限时卡可叠加、已永久拥有不消耗，重载后背包里的旧卡自动更新'],
+      ['new', '限时称号：任意时长、重复获得自动续期、到期自动卸下并提示'],
+      ['new', '属性加成（MythicLib / MMOItems）：可选佩戴才生效或拥有即生效；`stats.yml` 自定义属性显示名称'],
+      ['new', '操作日志 `/clt log`：获得、续期、购买、称号卡、收回、到期全部记录'],
+      ['new', 'SQLite / MySQL 8 / MariaDB，多服共用 MySQL 时跨服即时同步（约 1 – 3 秒）'],
+      ['new', '开发者 API 与事件：`TitleObtainEvent`、`TitleRemoveEvent`、`TitleEquipEvent`，为聊天插件提供称号字符、悬停文本与展示界面'],
+      ['new', '细分权限组 `cloudtitle.*`，管理权限细分到每条指令'],
+      ['opt', '动画帧在生成资源包时预先计算，变量查询几乎零开销；数据库读写全部异步'],
+      ['opt', '支持 Folia 区域线程；连接池内置于 jar，启动不需要联网下载依赖'],
+    ],
+  },
+]} />

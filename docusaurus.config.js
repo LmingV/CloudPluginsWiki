@@ -88,6 +88,12 @@ const config = {
           },
           {
             type: 'docSidebar',
+            sidebarId: 'titleSidebar',
+            position: 'left',
+            label: 'CloudTitle',
+          },
+          {
+            type: 'docSidebar',
             sidebarId: 'chatSidebar',
             position: 'left',
             label: 'CloudChat',

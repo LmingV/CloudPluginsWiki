@@ -14,6 +14,14 @@ const products = [
         to: "/docs/cosmetics"
     },
     {
+        eyebrow: "IDENTITY",
+        title: "CloudTitle",
+        description: "序列帧动态称号：图片放进文件夹就会动，资源包自动生成，搭配称号商店、称号卡、属性与跨服同步。",
+        accent: "amber",
+        icon: "✧",
+        to: "/docs/title"
+    },
+    {
         eyebrow: "COMMUNICATION",
         title: "CloudChat",
         description: "跨频道聊天、格式化消息与权限控制，构建更有秩序的服务器交流体验。",
@@ -26,7 +34,8 @@ const products = [
 const quickLinks = [
     { label: "安装与升级", description: "从零开始部署插件", to: "/docs/intro", icon: "01" },
     { label: "CloudCosmetics", description: "模型时装系统文档", to: "/docs/cosmetics", icon: "02" },
-    { label: "CloudChat", description: "聊天系统文档", to: "/docs/chat", icon: "03" }
+    { label: "CloudTitle", description: "动态称号系统文档", to: "/docs/title", icon: "03" },
+    { label: "CloudChat", description: "聊天系统文档", to: "/docs/chat", icon: "04" }
 ];
 
 export default function Home() {

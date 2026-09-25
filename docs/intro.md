@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 快速开始
 
-欢迎来到 **CloudPlugins 官方 Wiki**。这里是 CloudCosmetics、CloudChat 及后续云系列插件的统一文档入口，面向服务器服主、管理员与开发者。
+欢迎来到 **CloudPlugins 官方 Wiki**。这里是 CloudCosmetics、CloudTitle、CloudChat 及后续云系列插件的统一文档入口，面向服务器服主、管理员与开发者。
 
 ## 01 · 安装插件
 
@@ -18,6 +18,7 @@ sidebar_position: 1
 ## 02 · 选择插件文档
 
 - [CloudCosmetics 云时装](./cosmetics/index.mdx)：ModelEngine 模型时装、时装卡、商城与永久 BUFF。
+- [CloudTitle 云称号](./title/index.mdx)：序列帧动态称号、称号商店、称号卡、属性与跨服同步。
 - [CloudChat](./chat)：聊天频道、格式化消息与权限控制能力。
 
 ## 03 · 配置与排错

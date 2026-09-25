@@ -1,0 +1,114 @@
+---
+last_update:
+  date: 2026-09-26
+  author: CloudPlugins 团队
+sidebar_position: 1
+title: 介绍
+description: CloudTitle 云称号 —— 支持序列帧动画的称号插件，动态称号、商店、称号卡、属性与跨服同步。
+---
+
+# ✦ CloudTitle 云称号
+
+<div className="cc-shields">
+  <span className="cc-shield"><i>适用核心</i><b>Paper | Purpur | Folia</b></span>
+  <span className="cc-shield"><i>适用版本</i><b>1.20 – 26.x</b></span>
+  <span className="cc-shield g"><i>推荐前置</i><b>PlaceholderAPI</b></span>
+  <span className="cc-shield o"><i>数据库</i><b>SQLite | MySQL | MariaDB</b></span>
+  <span className="cc-shield v"><i>最新版本</i><b>v1.0.0</b></span>
+</div>
+
+> **把一组图片放进文件夹，它就是一个会动的称号。**
+> 不用写 mcmeta、不用手动做资源包：按文件名顺序自动播放，GIF 自动拆帧，资源包一键生成并合并进 ItemsAdder / CraftEngine / Nexo。
+
+## 为什么选择云称号
+
+很多称号插件只能显示文字，或者要求你手写 `.mcmeta` 动画、自己拼资源包、自己分配字符。
+**云称号把这些全部自动化**，并且把动画的计算量压到几乎为零 —— 动态称号不会因为人多而拖慢服务器。
+
+<div className="cc-grid">
+  <div className="cc-card">
+    <div className="cc-icon">🎞️</div>
+    <h3>序列帧动画</h3>
+    <p>a1.png、a2.png … a10.png 按数字顺序播放并循环；只放一张就是静态称号；直接放 GIF 也行。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">📐</div>
+    <h3>大图 + 小图</h3>
+    <p>头顶用大图 %clt_use%，TAB / 记分板用小图 %clt_use_small%。小图可单独绘制，也可自动缩小。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">📦</div>
+    <h3>资源包自动生成</h3>
+    <p>像 ModelEngine 一样生成资源包，自动同步到 ItemsAdder、CraftEngine、Nexo，不占用它们的字符区。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">⚡</div>
+    <h3>动画几乎零开销</h3>
+    <p>每一帧的字符在生成资源包时就已算好，变量只是按时钟取一个字符串，每 tick 查询也不增加负担。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">🛒</div>
+    <h3>完整获取玩法</h3>
+    <p>商店（金币 / 点券 / 物品任意组合）、称号卡、活动发放、限时称号自动到期，全部记入操作日志。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">🌐</div>
+    <h3>跨服即时同步</h3>
+    <p>多个分流共用 MySQL 时，在大厅给予的称号几秒内出现在玩家所在的生存服，不用重新进服。</p>
+  </div>
+</div>
+
+<div className="cc-stat">
+  <div><b>20</b><span>fps 最高播放速度</span></div>
+  <div><b>10</b><span>个 PlaceholderAPI 变量</span></div>
+  <div><b>3</b><span>种资源包合并目标</span></div>
+  <div><b>3</b><span>种货币可组合定价</span></div>
+  <div><b>150+</b><span>项自动化与实机测试</span></div>
+</div>
+
+## 功能一览
+
+| 模块 | 能做什么 |
+| --- | --- |
+| 称号动画 | 文件夹内 PNG 按文件名数字顺序播放；单张图 = 静态称号；GIF 自动拆帧并沿用帧延迟；每个称号可单独设 fps（1 – 20） |
+| 两种尺寸 | 大图 `%clt_use%`（头顶 / 名称）与小图 `%clt_use_small%`（TAB / 记分板），各自可设高度、垂直位置与偏移 |
+| 静态版本 | `%clt_use_static%` / `%clt_use_small_static%` 只显示首帧，适合聊天室与不希望闪动的位置 |
+| 资源包 | 自动生成文件夹与 zip，字符表持久保存（重载后字符不变），可合并进 ItemsAdder / CraftEngine / Nexo |
+| 称号仓库 | `/clt open` 查看全部称号、佩戴与卸下，未拥有的称号显示获取方式 |
+| 称号商店 | 金币（Vault）、点券（PlayerPoints）、物品（原版 / MMOItems / ItemsAdder / CraftEngine / Nexo）任意组合，缺一样就什么都不扣 |
+| 称号卡 | 右键使用获得称号；已永久拥有时不消耗；重载后背包里的旧卡自动更新名称与说明 |
+| 限时称号 | 任意时长（`7d12h`），重复获得自动续期，到期自动卸下并提示 |
+| 属性加成 | 接入 MythicLib / MMOItems 属性，可选「佩戴才生效」或「拥有即生效」；属性显示名称在 `stats.yml` 自定义 |
+| 管理 | `/clt view <玩家>` 打开玩家的称号仓库直接给予 / 收回；`/clt log` 查看操作日志 |
+| 展示 | `/clt showcase <玩家>` 查看别人拥有的称号（只读） |
+| 数据 | SQLite 单服，或 MySQL 8 / MariaDB 多服共享并即时同步 |
+| 开发者 | 公开 API 与事件（获得 / 失去 / 佩戴），聊天插件可直接取得称号字符与悬停文本 |
+
+:::note 头顶称号怎么显示？
+云称号**不自己渲染头顶文字**，只提供变量。把 `%clt_use%` 填进你正在使用的头顶 / 名称插件（例如 TAB 的 nametag、DecentHolograms 等）即可，完全不和现有插件冲突。详见[变量](./placeholders.md)。
+:::
+
+## 从这里开始
+
+<div className="cc-grid">
+  <a className="cc-card" href="/docs/title/quick-start">
+    <div className="cc-icon">🚀</div>
+    <h3>快速开始</h3>
+    <p>5 分钟做出第一个会动的称号。</p>
+  </a>
+  <a className="cc-card" href="/docs/title/frames">
+    <div className="cc-icon">🎞️</div>
+    <h3>序列帧与称号配置</h3>
+    <p>文件夹规则、fps、大小图与全部字段。</p>
+  </a>
+  <a className="cc-card" href="/docs/title/placeholders">
+    <div className="cc-icon">🏷️</div>
+    <h3>变量</h3>
+    <p>头顶、TAB、记分板、聊天分别该用哪个。</p>
+  </a>
+  <a className="cc-card" href="/docs/title/resource-pack">
+    <div className="cc-icon">📦</div>
+    <h3>资源包与合并</h3>
+    <p>发给玩家，或合并进 ItemsAdder / CE / Nexo。</p>
+  </a>
+</div>

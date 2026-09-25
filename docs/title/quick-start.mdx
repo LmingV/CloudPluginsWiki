@@ -1,0 +1,121 @@
+---
+last_update:
+  date: 2026-09-26
+  author: CloudPlugins 团队
+sidebar_position: 2
+title: 快速开始
+description: 5 分钟做出第一个会动的称号。
+---
+
+# 快速开始
+
+跟着下面的步骤，从零做出一个会动的称号，并让它显示在玩家头顶和 TAB 列表里。
+
+:::info 开始之前
+你需要一台 **Paper / Purpur / Folia 1.20 以上**的服务端，以及一组称号图片（例如 `a1.png` – `a8.png`，或一个 GIF）。
+下文以称号 ID `star` 为例，请换成你自己的名称。
+:::
+
+<ol className="cc-steps">
+<li>
+
+**安装插件**
+
+| 插件 | 是否必需 |
+| --- | --- |
+| PlaceholderAPI | 推荐（称号靠变量显示到头顶 / TAB） |
+| Vault + 经济插件 | 需要用金币购买称号时 |
+| PlayerPoints | 需要用点券购买称号时 |
+| MythicLib | 需要称号属性加成时 |
+
+把 `CloudTitle-1.0.0.jar` 放进 `plugins/`，启动服务端。控制台出现 `重载完成：2 个称号…` 即表示加载成功，并生成 `plugins/CloudTitle/`（内含两个示例称号）。
+
+</li>
+<li>
+
+**放入序列帧**
+
+在 `plugins/CloudTitle/frames/` 新建文件夹 `star`，把图片放进去：
+
+```text
+plugins/CloudTitle/frames/star/
+├── a1.png
+├── a2.png
+├── …
+└── a8.png
+```
+
+文件会按名称里的**数字顺序**播放（a1 → a2 → … → a10，不会出现 a10 排在 a2 前面），播完自动循环。
+只有一张图就是静态称号；也可以直接放一个 `star.gif`。
+
+</li>
+<li>
+
+**写称号配置**
+
+在 `plugins/CloudTitle/titles/` 新建 `my.yml`（文件名随意，文件夹下所有 `.yml` 都会加载）：
+
+```yaml title="titles/my.yml"
+star:
+  name: '&e星辰'
+  frames: star        # 对应 frames/star/，不写默认与 ID 同名
+  fps: 8              # 每秒 8 帧（1 – 20）
+  lore:
+    - '&7闪烁的星辰称号'
+```
+
+</li>
+<li>
+
+**生成资源包**
+
+```text
+/clt reload
+```
+
+插件会生成 `plugins/CloudTitle/resource_pack/` 与 `CloudTitle-pack.zip`。
+
+- 装了 **ItemsAdder / CraftEngine / Nexo**：会自动同步过去，执行它们的打包指令（例如 `/iazip`）即可。
+- 都没装：把 `CloudTitle-pack.zip` 设为服务器资源包发给玩家。
+
+详见[资源包与合并](./resource-pack.md)。
+
+</li>
+<li>
+
+**显示到头顶和 TAB**
+
+把变量填进你的头顶 / TAB 插件，例如 TAB 插件：
+
+```yaml title="plugins/TAB/groups.yml（示例）"
+_DEFAULT_:
+  # TAB 列表空间小，用小图
+  tabprefix: '%clt_use_small% '
+  # 头顶名字前缀
+  tagprefix: '%clt_use% '
+```
+
+:::tip 动画速度
+动态称号需要显示它的插件**定时刷新**才会动（TAB 插件默认会刷新）。刷新间隔越短动画越顺，详见[变量](./placeholders.md#动画与刷新)。
+:::
+
+</li>
+<li>
+
+**给自己并佩戴**
+
+```text
+/clt give 你的名字 star
+/clt open
+```
+
+在仓库里点击称号即可佩戴。重新看一眼头顶和 TAB —— 称号已经在动了。
+
+</li>
+</ol>
+
+## 下一步
+
+- 让玩家用金币 / 点券 / 物品购买：[商店与获取方式](./obtain.md)
+- 给称号加属性：[属性加成](./stats.md)
+- 调整高度、位置、小图：[序列帧与称号配置](./frames.md)
