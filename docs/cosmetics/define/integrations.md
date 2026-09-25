@@ -38,8 +38,10 @@ ce_armor:
     source: craftengine
     item: 'your_namespace:your_item'
     anchor: BODY
+    transform: NONE      # 2.10.5 起，CE 来源默认 NONE，可省略
 ```
 
+- CE 来源的显示模式默认 `NONE`；素材专门为头部调整过时可改成 `HEAD`，其他可选值见[四种渲染模式](./render-modes.mdx)。
 - 使用 `itemsadder` / `craftengine` 来源时，`body` 中不需要再写 `material` 或模型编号。
 - 插件复制一份物品用于展示，**不会修改**原物品。
 - 物品 ID 不存在或插件未启用时，该时装不生成展示物品，控制台会记录原因。

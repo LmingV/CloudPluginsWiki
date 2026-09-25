@@ -15,7 +15,33 @@ import Changelog from '@site/src/components/Changelog';
 
 <Changelog entries={[
   {
-    version: '2.10.2', date: '2026-09-25', latest: true, title: '时装菜单排版',
+    version: '2.10.5', date: '2026-09-25', latest: true, title: 'MEG 偏移方向修正 · CE BODY 显示模式',
+    items: [
+      ['fix', 'MEG XYZ 偏移方向修正：ModelEngine 会从骨骼位置减去挂载补偿值，之前把偏移加进补偿值导致显示方向相反。现在正 Y 向上，X / Z 按玩家朝向换算（玩家与 NPC 通用）'],
+      ['compat', '⚠ 升级前为了抵消反向而调整过的 MEG `offset`，升级后需要把 X / Y / Z 的正负号反过来'],
+      ['new', 'CE BODY 新增 `body.transform` 显示模式：CraftEngine 来源默认 `NONE`，可选 HEAD、FIXED、GUI、GROUND 等；`body.anchor` 控制位置，两者互相独立'],
+      ['compat', '原版与 ItemsAdder 来源未指定 `transform` 时仍使用 HEAD，旧配置外观不变'],
+      ['fix', 'BODY 移动时逐 tick 同步展示实体位置，不再等距离超过 2 格才补位；正常情况仍由乘客挂载跟随'],
+      ['opt', '包含 2.10.3 / 2.10.4 的 R4.1 挂载注册与登录挂载补发修复'],
+    ],
+  },
+  {
+    version: '2.10.4', date: '2026-09-25', title: '登录挂载重发（测试版，已并入 2.10.5）',
+    items: [
+      ['fix', 'R4.1 下同时标记外层「穿戴者 → 模型」挂载，让 ModelEngine 重新发送挂载封包'],
+      ['fix', '生成、重新追踪与显示后于 2 / 10 / 30 tick 补发挂载，只对仍在线且可见的观察者重试，模型移除后停止'],
+    ],
+  },
+  {
+    version: '2.10.3', date: '2026-09-25', title: 'ModelEngine R4.1 挂载修复',
+    items: [
+      ['fix', '修复 ModelEngine R4.1 下 XYZ 偏移失效：PivotOverride 设置前未注册到 PivotOverrideRegistry，导致渲染器读不到自定义偏移、乘客封包也不会发送'],
+      ['opt', '每个模型使用独立的登记 UUID，不覆盖其他插件以玩家 UUID 登记的挂载；模型拆除或初始化失败时清理登记'],
+      ['compat', '保留 R4.0.9 旧 API 路径与 2.10.2 固定格位、排序功能'],
+    ],
+  },
+  {
+    version: '2.10.2', date: '2026-09-25', title: '时装菜单排版',
     items: [
       ['new', '新增 `order`：设置时装排序，数字越小越靠前'],
       ['new', '新增 `menu-slot`：把时装固定在指定格位（从 0 起算）'],

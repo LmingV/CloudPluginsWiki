@@ -25,7 +25,7 @@ title: 安装与升级
 
 | 插件 | 类型 | 用途 |
 | --- | --- | --- |
-| **ModelEngine R4** | 必需 | 加载与渲染 `meg` 模型；兼容 R4.0.9 与 R4.1.0 |
+| **ModelEngine R4** | 必需 | 加载与渲染 `meg` 模型；兼容 R4.0.9 与 R4.1.0（R4.1 需插件 2.10.3 以上） |
 | **packetevents** | 必需 | BODY 虚拟乘客、数据包层面的可见性控制 |
 | MythicLib | 可选 | 时装属性 BUFF |
 | MMOItems | 可选 | 与 MythicLib 属性系统搭配 |
@@ -40,7 +40,7 @@ SQLite、MySQL 驱动与 MiniMessage 由服务端在首次启动时自动下载�
 ## 全新安装
 
 1. 安装必需的前置插件。
-2. 把 `CloudCosmetics-2.10.2.jar` 放进 `plugins/`。同一个服务端**只能保留一份**云时装 JAR。
+2. 把 `CloudCosmetics-2.10.5.jar` 放进 `plugins/`。同一个服务端**只能保留一份**云时装 JAR。
 3. 启动服务端，自动生成以下文件（首次生成的配置、菜单与提示消息全部为**简体中文**）：
 
 ```text

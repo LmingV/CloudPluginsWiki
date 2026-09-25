@@ -65,8 +65,8 @@ const config = {
         respectPrefersColorScheme: false,
       },
       announcementBar: {
-        id: 'cc-2-10-2',
-        content: '✦ 云时装 <b>2.10.2</b> 已发布：时装菜单固定格位与排序 · 修复较大 offset 被误判重建 · <a href="/docs/cosmetics/changelog">查看更新记录 →</a>',
+        id: 'cc-2-10-5',
+        content: '✦ 云时装 <b>2.10.5</b> 已发布：修复 ModelEngine R4.1 偏移失效与 MEG 偏移方向 · CE BODY 显示模式 · <a href="/docs/cosmetics/changelog">查看更新记录 →</a>',
         isCloseable: true,
       },
       docs: {
