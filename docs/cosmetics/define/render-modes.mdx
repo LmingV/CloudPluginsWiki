@@ -1,0 +1,185 @@
+---
+last_update:
+  date: 2026-09-25
+  author: CloudPlugins 团队
+sidebar_position: 2
+title: 四种渲染模式
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 四种渲染模式
+
+云时装提供四种把时装「穿」到玩家身上的方式。不同模式在动画能力、跟随方式与是否占用装备栏上各有取舍，按需求选择即可。
+
+## 该选哪一种
+
+| 想做的内容 | 推荐模式 |
+| --- | --- |
+| 带骨骼动画的翅膀、神龙、光环、大型背饰 | `meg` |
+| 环绕玩家飞行、自带位移动画的宠物 / 法器 | `meg` + `follow-rotation: false` |
+| 浮空武器、单一物品模型，要自由定位 | `display` |
+| 直接替换头盔 / 盔甲外观，转向与玩家完全一致 | `equipment` |
+| 保留原盔甲外观的贴身装甲、背饰 | `body` |
+| ItemsAdder / CraftEngine 做好的完整物品 | `body` + `source: itemsadder` / `craftengine` |
+
+## 对比
+
+| | `meg` | `display` | `equipment` | `body` |
+| --- | :---: | :---: | :---: | :---: |
+| 骨骼动画 | ✅ | — | — | — |
+| 状态动画切换 | ✅ | — | — | — |
+| 缩放 / 偏移 | ✅ | ✅ | — | ✅ |
+| 不占装备栏 | ✅ | ✅ | ❌ 覆盖外观 | ✅ |
+| 跟随方式 | 逐 tick 同步 | 逐 tick 传送 + 插值 | 原版骨架 | 客户端虚拟乘客 |
+| 转向延迟 | 按转向模式 | 极低 | 零（原版） | 极低 |
+| 物品来源 | ModelEngine | 原版 | 原版 | 原版 / ItemsAdder / CraftEngine |
+
+<Tabs groupId="mode">
+<TabItem value="meg" label="meg · ModelEngine" default>
+
+## `meg` · ModelEngine 模型
+
+最完整的模式：支持骨骼动画、按玩家状态切换动画、缩放与偏移。适合翅膀、神龙、光环、大型背饰。
+
+```yaml
+star_wings:
+  type: meg
+  name: '<gradient:#FFE153:#66CCFF>星辰之翼</gradient>'
+  model: star_wings
+  icon:
+    material: FEATHER
+  scale: 1.0
+  follow-rotation: true
+  offset:
+    x: 0.0
+    y: 0.0
+    z: 0.25
+  animations:
+    idle: idle
+    walk: walk
+    fly: fly
+```
+
+- `model` 必须是 ModelEngine 已加载的模型 ID，缺少时该时装会被跳过。
+- 模型挂载在玩家身上并**逐 tick 同步位置与朝向**，同时受三重自我修复保护（见[转向与跟随](./rotation-follow.md)）。
+- 环绕型模型请设 `follow-rotation: false`，让模型只跟随位置，由自身动画决定朝向。
+
+</TabItem>
+<TabItem value="display" label="display · 浮空物品">
+
+## `display` · 浮空物品
+
+以 ItemDisplay 显示单一物品模型，不占装备栏，可自由定位。适合浮空武器、悬浮圣器、头顶光环等不需要骨骼动画的物件。
+
+```yaml
+floating_relic:
+  type: display
+  name: '&b浮游圣器'
+  icon:
+    material: PAPER
+  wearable:
+    material: PAPER
+    custom-model-data: 10001
+    item-model: ''
+  scale: 1.0
+  follow-rotation: true
+  offset:
+    x: 0.0
+    y: 1.0
+    z: -0.4
+```
+
+- 物品写在 `wearable` 区块，`material` 必填。
+- 每 tick 更新位置，并启用 1 tick 客户端插值，移动时画面平滑。
+- 旧版配置中的 `type: item` 仍可使用，会被当作 `display`。
+
+</TabItem>
+<TabItem value="equipment" label="equipment · 装备外观">
+
+## `equipment` · 原版装备外观
+
+通过数据包把指定装备栏的**外观**替换成时装物品，由 Minecraft 原版骨架渲染，所以转向、动作与玩家本人完全同步，没有任何跟随延迟，也不会产生额外实体。
+
+```yaml
+sky_crown:
+  type: equipment
+  name: '&e苍穹之冠'
+  icon:
+    material: PAPER
+  equipment:
+    slot: HEAD
+    material: PAPER
+    custom-model-data: 10002
+    item-model: ''
+```
+
+可用槽位：`HEAD`、`CHEST`、`LEGS`、`FEET`、`HAND`、`OFF_HAND`。
+
+:::caution 同一槽位只能显示一件
+原装备仍然存在且属性照常生效，但客户端只能显示时装外观。想保留原头盔外观，请改用 `body`。
+:::
+
+`equipment` 不使用 `scale`、`offset`、`animation`、`follow-rotation`。
+
+</TabItem>
+<TabItem value="body" label="body · 贴身展示">
+
+## `body` · 贴身展示
+
+以 ItemDisplay 通过 **packetevents 虚拟乘客** 直接绑定在玩家身上：由客户端负责跟随，走动时零延迟，同时**不占用任何盔甲栏**。适合完整身体时装、外骨骼、贴身背饰。
+
+```yaml
+spirit_armor:
+  type: body
+  name: '<gradient:#66FFFF:#FFE153>灵式启程装甲</gradient>'
+  icon:
+    material: PAPER
+  body:
+    source: itemsadder          # vanilla / itemsadder / craftengine
+    item: 'yunyue:spirit_body'  # itemsadder / craftengine 使用完整 ID
+    anchor: BODY                # BODY / HEAD / BACK / FEET
+    rotation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+  scale: 1.0
+  follow-rotation: true
+  offset:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+```
+
+原版物品来源：
+
+```yaml
+  body:
+    source: vanilla
+    material: PAPER
+    custom-model-data: 997
+    item-model: 'yunyue:spirit_body'
+    anchor: BODY
+```
+
+| 锚点 | 基础位置 | 适合 |
+| --- | --- | --- |
+| `BODY` | 胸口（默认） | 全身装甲、贴身时装 |
+| `HEAD` | 头部 | 不占头盔槽的头饰 |
+| `BACK` | 背部 | 翅膀、披风、背部法器 |
+| `FEET` | 脚底 | 脚下光环、地面法阵 |
+
+`offset` 会在锚点基础上继续微调，`rotation` 用于修正模型本身的朝向。
+
+:::info 自动降级
+若虚拟乘客数据包被其他插件阻止或发送失败，BODY 会自动退回**安全的位置同步**，时装仍然可见，只是跟随略微没那么紧。
+:::
+
+</TabItem>
+</Tabs>
+
+## 资源包提醒
+
+所有模式都依赖客户端资源包：玩家没有加载资源包时，可能只看到纸或缺失模型。
+`custom-model-data` / `item-model` 必须与资源包一致；ItemsAdder / CraftEngine 来源只保证服务端生成正确物品，不能替客户端下载资源包。

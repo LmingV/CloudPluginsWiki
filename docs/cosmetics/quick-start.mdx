@@ -1,0 +1,155 @@
+---
+last_update:
+  date: 2026-09-25
+  author: CloudPlugins 团队
+sidebar_position: 2
+title: 快速开始
+description: 10 分钟做出第一件可穿戴时装。
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 快速开始
+
+跟着下面的步骤，从零开始做出第一件玩家可以穿戴、解锁并获得 BUFF 的翅膀时装。
+
+:::info 开始之前
+你需要一台 **Paper / Purpur 1.20 以上**的服务端，以及一个已经做好的 bbmodel 模型（例如翅膀）。
+下文以模型 ID `star_wings` 为例，请换成你自己的模型名称。
+:::
+
+<ol className="cc-steps">
+<li>
+
+**安装前置插件**
+
+把以下插件放进 `plugins/`：
+
+| 插件 | 是否必需 |
+| --- | --- |
+| ModelEngine R4 | ✅ 必需 |
+| packetevents | ✅ 必需 |
+| MythicLib | 需要时装 BUFF 时安装 |
+| Vault + 经济插件 | 需要商城时安装 |
+
+</li>
+<li>
+
+**安装云时装并启动**
+
+放入 `CloudCosmetics-2.10.0.jar`，启动服务端。控制台出现 `Loaded 1 cosmetic(s).` 即表示加载成功，并会生成 `plugins/CloudCosmetics/` 文件夹。
+
+</li>
+<li>
+
+**导入模型**
+
+把 `star_wings.bbmodel` 放进 `plugins/ModelEngine/blueprints/`，执行：
+
+```text
+/meg reload
+```
+
+让玩家重新加载服务器资源包，确保客户端能看到模型。
+
+</li>
+<li>
+
+**写第一件时装**
+
+打开 `plugins/CloudCosmetics/cosmetics/wings.yml`（首次启动已自动生成范例），确认 `model` 与你的模型 ID 一致：
+
+```yaml title="cosmetics/wings.yml"
+star_wings:
+  type: meg
+  name: '<gradient:#FFE153:#66CCFF>星辰之翼</gradient>'
+  model: star_wings        # ← ModelEngine 模型 ID
+  icon:
+    material: FEATHER
+  scale: 1.0
+  follow-rotation: true
+  offset:
+    x: 0.0
+    y: 0.0
+    z: 0.25                # 正数往背后
+  animations:
+    idle: idle
+    walk: walk
+    fly: fly
+  attributes:
+    max-health: 10
+```
+
+保存后执行 `/cosmetic reload`。
+
+</li>
+<li>
+
+**让玩家获得时装**
+
+三种方式任选：
+
+<Tabs groupId="unlock">
+<TabItem value="card" label="时装卡（推荐）" default>
+
+```text
+/cosmetic card create wings star_wings 1 玩家名
+```
+
+玩家右键时装卡即可永久解锁；已拥有时不会重复扣卡。时装卡是普通物品，可以放进礼包、抽奖、任务奖励。
+
+</TabItem>
+<TabItem value="give" label="直接给予">
+
+```text
+/cosmetic give star_wings 玩家名
+```
+
+立即写入数据库并套用 BUFF，适合活动补发与测试。
+
+</TabItem>
+<TabItem value="shop" label="商城购买">
+
+在时装配置里加入：
+
+```yaml
+  shop:
+    enabled: true
+    price: 1000
+```
+
+`/cosmetic reload` 后，玩家执行 `/cosmetic shop` 即可购买。
+
+</TabItem>
+</Tabs>
+
+</li>
+<li>
+
+**穿上它**
+
+玩家执行 `/cosmetic` 打开衣橱 → 选择分类 → 点击时装穿戴。再点一次或点「卸下」按钮即可脱下。
+
+</li>
+</ol>
+
+:::tip 用普通玩家账号测试
+默认 `ownership.op-has-all: true`，**OP 会被视为拥有全部时装**。测试解锁、商城与 BUFF 流程时，请使用非 OP 账号，或暂时把该项改为 `false`。
+:::
+
+## 上线前检查清单
+
+- [ ] 第一人称与第三人称都看过，模型位置正确
+- [ ] 原地转身、快速回头时模型跟得上（不满意见[转向与跟随](./define/rotation-follow.md)）
+- [ ] 传送、死亡重生、切换世界后时装仍在
+- [ ] 让另一个玩家站在旁边观察，确认他人视角正常
+- [ ] 控制台没有 `Skipped cosmetic` 警告
+- [ ] 如使用 MySQL，所有分流连接同一个数据库与数据表
+
+## 接下来
+
+- 想做浮空法器、头饰或贴身装甲 → [四种渲染模式](./define/render-modes.mdx)
+- 想让模型跟得更紧或更柔 → [转向与跟随](./define/rotation-follow.md)
+- 想调整衣橱与商城界面 → [菜单与商城](./menus.md)
+- 大服或主城人多 → [性能与优化](./performance.md)

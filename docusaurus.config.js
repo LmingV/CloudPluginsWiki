@@ -8,6 +8,9 @@ const config = {
   title: 'CloudPlugins 官方 Wiki',
   tagline: 'CloudPlugins 云系列插件官方文档',
   favicon: 'img/cloudplugins-mark.svg',
+  stylesheets: [
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap',
+  ],
 
   // 站点最终访问地址（自定义域名）
   url: 'https://Cloud.plugins.wiki',
@@ -36,17 +39,19 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
           // 每篇文档右上角“编辑此页”链接指向 GitHub
           editUrl:
-            'https://github.com/LmingV/CloudPlugins.github.io/tree/main/',
+            'https://github.com/LmingV/CloudPluginsWiki/tree/main/',
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/LmingV/CloudPlugins.github.io/tree/main/',
+            'https://github.com/LmingV/CloudPluginsWiki/tree/main/',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: ['./src/css/custom.css', './src/css/theme.css'],
         },
       }),
     ],
@@ -55,6 +60,19 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+        respectPrefersColorScheme: false,
+      },
+      announcementBar: {
+        id: 'cc-2-10-0',
+        content: '✦ 云时装 <b>2.10.0</b> 已发布：不死图腾冷却提示（BOSS 血条 / 快捷栏 / PlaceholderAPI）· 默认配置全面简体中文 · <a href="/docs/cosmetics/changelog">查看更新记录 →</a>',
+        isCloseable: true,
+      },
+      docs: {
+        sidebar: { hideable: true },
+      },
+      tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
       navbar: {
         title: 'CloudPlugins Wiki',
         logo: {
@@ -73,6 +91,11 @@ const config = {
             sidebarId: 'chatSidebar',
             position: 'left',
             label: 'CloudChat',
+          },
+          {
+            to: '/docs/cosmetics/changelog',
+            label: '更新记录',
+            position: 'right',
           },
           {
             to: '/docs/intro',

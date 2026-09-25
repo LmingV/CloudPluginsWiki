@@ -1,0 +1,132 @@
+---
+last_update:
+  date: 2026-09-25
+  author: CloudPlugins 团队
+sidebar_position: 7
+title: 不死图腾
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 不死图腾
+
+让特定时装拥有「保命」能力：玩家**正在穿戴**这件时装且冷却结束时，受到可触发原版不死图腾的致命伤害，就会触发图腾效果——复活动画、音效与药水效果全部走原版流程。
+
+## 写法
+
+与 `type`、`model`、`attributes` 同层（**不要**放进 `attributes`）：
+
+```yaml title="cosmetics/eternal.yml"
+samsara_scroll:
+  type: meg
+  name: '<gradient:#FFF7C2:#69ECFF>[永恒]</gradient> 轮回生死轴'
+  model: lhsszwqt
+  icon:
+    material: PAPER
+  scale: 1.8
+  animation: scroll_summon_complete
+  totem: true
+  totem-cooldown: 300
+  totem-health: 8
+```
+
+| 字段 | 默认 | 说明 |
+| --- | --- | --- |
+| `totem` | `false` | 是否启用 |
+| `totem-cooldown` | `300` | 冷却秒数；`0` 表示无冷却 |
+| `totem-health` | `4` | 触发后的生命值（2 点 = 1 颗心），不超过最大生命 |
+
+## 冷却提示
+
+2.10.0 起，图腾触发后会提示玩家，并实时显示冷却倒计时。提示方式在 `config.yml` 中选择：
+
+```yaml title="config.yml"
+totem-notify:
+  mode: actionbar          # actionbar / bossbar / none
+  only-when-wearing: true  # 只在穿戴图腾时装时显示冷却
+  update-ticks: 20         # 刷新间隔（20 = 1 秒，最小 5）
+  notify-triggered: true   # 触发时聊天栏提示
+  notify-ready: true       # 冷却结束时提示一次
+  bossbar:
+    color: RED             # PINK / BLUE / RED / GREEN / YELLOW / PURPLE / WHITE
+    style: SOLID           # SOLID / SEGMENTED_6 / SEGMENTED_10 / SEGMENTED_12 / SEGMENTED_20
+```
+
+<Tabs groupId="totem-mode">
+<TabItem value="actionbar" label="actionbar · 快捷栏" default>
+
+在快捷栏上方显示一行文字，不遮挡画面，适合大多数服务器。
+
+```text
+          不死图腾冷却中 · 4分32秒
+  [ ][ ][ ][ ][ ][ ][ ][ ][ ]
+```
+
+也可以写成 `hotbar`，效果相同。
+
+</TabItem>
+<TabItem value="bossbar" label="bossbar · BOSS 血条">
+
+在屏幕顶部显示 BOSS 血条，**长度随剩余冷却逐渐缩短**，一眼就能看出还要多久。颜色与样式由 `bossbar.color` / `bossbar.style` 决定。
+
+```text
+  不死图腾冷却中 · 4分32秒
+  ████████████████░░░░░░░░░░
+```
+
+</TabItem>
+<TabItem value="none" label="none · 自定义">
+
+不显示任何内置提示，改用 [PlaceholderAPI 变量](../placeholders.md) 放到你自己的计分板、TAB、全息或菜单里：
+
+```text
+%cloudcosmetics_totem_status%      → 已就绪 / 4分32秒
+%cloudcosmetics_totem_remaining%   → 4分32秒（就绪时为空）
+```
+
+`notify-triggered` 与 `notify-ready` 仍然有效，不需要时一并设为 `false`。
+
+</TabItem>
+</Tabs>
+
+## 提示文字
+
+所有提示都在 `messages.yml` 的 `totem` 区块，**填 `''` 即不发送该条**：
+
+```yaml title="messages.yml"
+totem:
+  triggered: '&6✦ 不死图腾触发！&7时装为你挡下了致命一击，冷却 &e{cooldown}'
+  cooldown-actionbar: '&6不死图腾冷却中 &7· &e{remaining}'
+  cooldown-bossbar: '&6不死图腾冷却中 &7· &e{remaining}'
+  ready: '&a✦ 不死图腾已就绪'
+  status-ready: '&a已就绪'          # %cloudcosmetics_totem_status% 就绪时
+  status-cooling: '&e{remaining}'   # %cloudcosmetics_totem_status% 冷却时
+  time-format:
+    hours: '{h}时{m}分{s}秒'
+    minutes: '{m}分{s}秒'
+    seconds: '{s}秒'
+```
+
+| 变量 | 内容 | 示例 |
+| --- | --- | --- |
+| `{remaining}` | 剩余冷却（按 `time-format`） | `4分32秒` |
+| `{remaining_seconds}` | 剩余秒数 | `272` |
+| `{cooldown}` | 本次冷却总长 | `5分00秒` |
+| `{cosmetic}` | 当前时装名称 | `轮回生死轴` |
+
+`time-format` 中可用 `{h}` `{m}` `{s}` 与 `{total_seconds}`，例如改成 `'{m}:{s}'` 就会显示 `4:32`。支持 `&` 色码与 MiniMessage。
+
+:::tip 旧版升级无需修改
+从旧版升级时，已存在的 `messages.yml` 不会被覆盖；缺少的 `totem.*` 会使用上方的内置默认文字。想自定义时，把区块复制进去即可。
+:::
+
+## 规则
+
+- 只计算**当前穿戴**的时装，不会因为拥有多件图腾时装而叠加。
+- 触发**不消耗**时装。
+- 玩家手持真正的不死图腾时优先使用真图腾，且不占用时装冷却。
+- 所有时装共用同一个玩家的保命冷却，换装不会重置。
+- 冷却按真实时间计算，离线期间也会流逝；重登、重启、重载都不会清除。
+- 冷却保存在玩家数据（PDC）中，不通过 MySQL 跨分流同步。
+- 遵循原版图腾规则，并非所有死亡来源（例如虚空、`/kill`）都能保命。

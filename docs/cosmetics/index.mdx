@@ -1,0 +1,116 @@
+---
+last_update:
+  date: 2026-09-25
+  author: CloudPlugins 团队
+sidebar_position: 1
+title: 介绍
+description: CloudCosmetics 云时装 —— 让你的 bbmodel 模型成为玩家可以穿戴的时装。
+---
+
+# ✦ CloudCosmetics 云时装
+
+<div className="cc-shields">
+  <span className="cc-shield"><i>适用核心</i><b>Paper | Purpur</b></span>
+  <span className="cc-shield"><i>适用版本</i><b>1.20 – 26.x</b></span>
+  <span className="cc-shield g"><i>前置</i><b>ModelEngine R4</b></span>
+  <span className="cc-shield o"><i>是否付费</i><b>一次购买 · 永久包更</b></span>
+  <span className="cc-shield p"><i>购买价格</i><b>50R</b></span>
+  <span className="cc-shield v"><i>最新版本</i><b>v2.10.0</b></span>
+</div>
+
+> **让你的 bbmodel 模型，成为玩家可以穿戴的时装。**
+> 做好的模型放进 ModelEngine，写几行配置，就能让玩家穿上、收藏、交易，并获得永久 BUFF。
+
+<div className="cc-banner">
+  <img src="/img/cosmetics-banner.svg" alt="CloudCosmetics 云时装" />
+</div>
+
+## 为什么选择云时装
+
+市面上很多时装方案只做到「把模型放到玩家身上」，但真正上线后才会遇到：转身时翅膀慢半拍、传送后模型卡在原地、主城人一多客户端直接掉帧。
+**云时装从第一版起就围绕「跟得紧、不卡住、扛得住人多」反复打磨**，这些问题在插件里都有对应的机制，而不是交给服主自己想办法。
+
+<div className="cc-grid">
+  <div className="cc-card">
+    <div className="cc-icon">🎯</div>
+    <h3>逐 tick 同步跟随</h3>
+    <p>模型位置与朝向每 tick 同步，配合客户端插值，走、跑、跳、滑翔都贴身，不拖影。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">🧭</div>
+    <h3>三种转向模式</h3>
+    <p>rigid 硬连接、native-body 原生身体、smooth 自适应柔顺追踪，含死区与大角度瞬间对齐。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">🛡️</div>
+    <h3>三重自我修复</h3>
+    <p>动画停摆、骨骼冻结、位置脱节都会被检测并自动重建，传送、重生、切世界不再“掉时装”。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">⚡</div>
+    <h3>人多也不卡</h3>
+    <p>渲染距离、每位观众模型上限、远距离动画降频，主城满人时客户端负担依然可控。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">🧩</div>
+    <h3>四种渲染模式</h3>
+    <p>ModelEngine 骨骼动画、浮空物品、原版装备外观、虚拟乘客贴身展示，按需求选用。</p>
+  </div>
+  <div className="cc-card">
+    <div className="cc-icon">💎</div>
+    <h3>完整的收藏玩法</h3>
+    <p>衣橱分类、时装卡永久解锁、Vault 商城、永久属性 BUFF、不死图腾、NPC 展示一应俱全。</p>
+  </div>
+</div>
+
+<div className="cc-stat">
+  <div><b>4</b><span>种渲染模式</span></div>
+  <div><b>3</b><span>种转向模式</span></div>
+  <div><b>5</b><span>种动作动画状态</span></div>
+  <div><b>1 tick</b><span>位置同步间隔</span></div>
+  <div><b>34</b><span>项自动化回归测试</span></div>
+</div>
+
+## 功能一览
+
+| 模块 | 能做什么 |
+| --- | --- |
+| 渲染模式 | `meg` 骨骼动画模型、`display` 浮空物品、`equipment` 原版装备外观、`body` 贴身展示 |
+| 跟随与转向 | 逐 tick 同步、三种转向模式、朝向相关偏移、BODY 四种锚点 |
+| 动画 | 按待机、行走、潜行、飞行、游泳自动切换动画 |
+| 收藏与解锁 | 时装卡右键永久解锁，已拥有不重复消耗；管理员可直接给予或收回 |
+| 商城 | 接入 Vault 经济，购买失败自动退款，并发购买保护 |
+| 属性 BUFF | 拥有即生效、多件叠加（MythicLib），不必强制穿戴 |
+| 不死图腾 | 穿戴指定时装时触发原版图腾保命，可设冷却与恢复血量 |
+| 物品来源 | 原版 CustomModelData / item-model、ItemsAdder、CraftEngine |
+| 菜单 | 分类页、衣橱、商城全部可自定义，自动分页，防止拿取物品 |
+| 图腾提示 | 冷却倒计时可选 BOSS 血条 / 快捷栏文字，或用 PlaceholderAPI 变量自行显示 |
+| NPC 展示 | 一条指令在当前位置生成穿着时装的 Citizens NPC |
+| 可见性 | 玩家可隐藏自己的时装，或隐藏其他玩家的时装 |
+| 数据 | SQLite 单服、MySQL / MariaDB 跨分流共享 |
+| 权限 | 细分到每条管理指令的权限组，兼容旧版权限 |
+
+## 从这里开始
+
+<div className="cc-grid">
+  <a className="cc-card" href="/docs/cosmetics/quick-start">
+    <div className="cc-icon">🚀</div>
+    <h3>快速开始</h3>
+    <p>10 分钟做出第一件可穿戴时装。</p>
+  </a>
+  <a className="cc-card" href="/docs/cosmetics/define/render-modes">
+    <div className="cc-icon">🧩</div>
+    <h3>四种渲染模式</h3>
+    <p>翅膀、浮空物品、头饰、贴身装甲该选哪种。</p>
+  </a>
+  <a className="cc-card" href="/docs/cosmetics/define/rotation-follow">
+    <div className="cc-icon">🧭</div>
+    <h3>转向与跟随</h3>
+    <p>让模型跟得紧、转得顺的全部设置。</p>
+  </a>
+  <a className="cc-card" href="/docs/cosmetics/performance">
+    <div className="cc-icon">⚡</div>
+    <h3>性能与优化</h3>
+    <p>大服、主城、人多场景的推荐参数。</p>
+  </a>
+</div>

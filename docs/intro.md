@@ -17,7 +17,7 @@ sidebar_position: 1
 
 ## 02 · 选择插件文档
 
-- [CloudCosmetics](./cosmetics)：外观、称号与个性化展示能力。
+- [CloudCosmetics 云时装](./cosmetics/index.mdx)：ModelEngine 模型时装、时装卡、商城与永久 BUFF。
 - [CloudChat](./chat)：聊天频道、格式化消息与权限控制能力。
 
 ## 03 · 配置与排错

@@ -8,7 +8,7 @@ const products = [
     {
         eyebrow: "PLAYER EXPERIENCE",
         title: "CloudCosmetics",
-        description: "把外观、称号与个性化展示交给一套清晰、可扩展的云端系统。",
+        description: "ModelEngine 模型时装：翅膀、背饰、贴身装甲，逐 tick 跟随，搭配时装卡、商城与永久 BUFF。",
         accent: "violet",
         icon: "✦",
         to: "/docs/cosmetics"
@@ -25,7 +25,7 @@ const products = [
 
 const quickLinks = [
     { label: "安装与升级", description: "从零开始部署插件", to: "/docs/intro", icon: "01" },
-    { label: "CloudCosmetics", description: "外观系统文档", to: "/docs/cosmetics", icon: "02" },
+    { label: "CloudCosmetics", description: "模型时装系统文档", to: "/docs/cosmetics", icon: "02" },
     { label: "CloudChat", description: "聊天系统文档", to: "/docs/chat", icon: "03" }
 ];
 
