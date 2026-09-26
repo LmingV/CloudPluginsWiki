@@ -51,10 +51,10 @@ star:
   name: '<gradient:#FFE153:#66CCFF>星辰</gradient>'   # 支持 & 色码与 MiniMessage
   frames: star
   fps: 8
-  height: 16
+  size: 中
   small:
     frames: auto
-    height: 8
+    size: 特小
   icon:
     material: NETHER_STAR
   lore:
@@ -69,14 +69,15 @@ star:
 | `name` | 称号 ID | 称号名称，用于菜单、提示与 `%clt_use_name%` |
 | `frames` | 称号 ID | 大图序列帧文件夹（`frames/` 下），也可以写单个文件，如 `vip/vip.png` |
 | `fps` | GIF 帧延迟，否则 `config.yml` 的 `defaults.fps` | 每秒播放几帧，1 – 20（超过 20 自动改为 20） |
-| `height` | `defaults.height`（16） | `%clt_use%` 的显示高度（像素，普通文字约 8） |
+| `size` | `中`（16 像素） | 大小：`特小` / `小` / `中` / `大` / `特大`，或直接写像素数字，见[调大小与位置](#调大小与位置) |
+| `height` | — | 精确像素高度（进阶），写了就不看 `size` |
 | `scale` | `1.0` | 大小倍率，乘在 `height` 上：`2.0` 两倍、`0.5` 一半。必须大于 0，结果最高 256 像素 |
-| `align` | `center` | 垂直位置：`center` 居中 / `bottom` 站在文字底线往上长 / `top` 从文字顶部往下长，见[调大小与位置](#调大小与位置) |
+| `align` | `bottom` | 垂直位置：`bottom` 站在名字上方往上长 / `center` 居中 / `top` 往下长 |
 | `ascent` | 由 `align` 决定 | 垂直位置：基线以上的像素数，不能大于 `height`；越大越往上 |
 | `offset-x` | `0` | 称号前的水平偏移，负数往左 |
 | `spacing` | `0` | 称号后额外留空的像素 |
 | `small.frames` | 见[小图](#小图) | 小图文件夹，`auto` = 自动缩小 |
-| `small.height` | `defaults.small-height`（8） | `%clt_use_small%` 的显示高度 |
+| `small.size` / `small.height` | `特小`（8 像素） | `%clt_use_small%` 的大小，写法同上；小图的 `align` 默认 `center` |
 | `small.scale` | `1.0` | 小图的大小倍率（称号的 `scale` 只影响大图，小图要单独写） |
 | `small.align` / `small.ascent` / `small.offset-x` / `small.spacing` | 同上 | 小图各自的位置设置 |
 
@@ -102,19 +103,43 @@ star:
 
 ## 调大小与位置
 
-只需要记住两件事：**`height` 管大小，`align` 管位置**。
+**一般只需要写 `size`**，不用算像素：
 
-| 想要 | 这样写 |
+```yaml
+star:
+  frames: star
+  size: 大          # 头顶称号的大小
+  small:
+    size: 特小      # TAB / 记分板的小图
+```
+
+| `size` | 像素高度 | 适合 |
+| --- | --- | --- |
+| `特小` / `tiny` | 8 | 和普通文字一样大：TAB、记分板、聊天 |
+| `小` / `small` | 12 | 比名字稍大的头顶称号 |
+| `中` / `normal` | 16 | 默认值 |
+| `大` / `large` | 20 | 显眼的头顶称号 |
+| `特大` / `huge` | 28 | 活动、排行榜等特别称号 |
+
+也可以直接写数字，例如 `size: 18`。宽度不用设，会按图片比例自动计算（256×104 的图设 `size: 大`，游戏里约 49×20 像素）。
+
+**位置已经默认好**：大图（`%clt_use%`）默认 `align: bottom`，站在名字上方往上长，**不会压到下面那行名字**；小图（`%clt_use_small%`）默认 `align: center`，和文字上下居中。一般不需要改。
+
+| `align` | 效果 |
 | --- | --- |
-| 普通文字大小（8 像素） | `height: 8` |
-| 头顶称号，比名字大一些 | `height: 16` – `24` |
-| 放在头顶最上面一行、不压到下面的名字 | `align: bottom` |
-| 和文字并排、上下居中（聊天、TAB） | `align: center`（默认） |
+| `bottom` | 站在文字底线上，只往上长（大图默认） |
+| `center` | 以文字为中心上下延伸（小图默认） |
+| `top` | 从文字顶部往下长 |
 
-- **`scale` 与 `height` 二选一即可**：`scale` 是乘在 `height` 上的，`height: 10` + `scale: 3.0` 实际是 30 像素，一起调很难抓。
-- 称号比文字高时，`center` 会让图片**上下各伸出一半**，下半部就可能压到下一行；头顶名称的第一行改用 `align: bottom`，图片只往上长。
-- 仍需要微调时才写 `ascent`（基线以上的像素数，最大等于 `height`）：数字越大越往上。写了 `ascent` 就不看 `align`。
-- 宽度不用设，会按图片比例自动计算；例如 256×104 的图设 `height: 18`，游戏里约 44×18 像素。
+### 进阶微调
+
+只有在上面不够用时才需要：
+
+| 字段 | 说明 |
+| --- | --- |
+| `height` | 精确像素高度，写了就不看 `size` |
+| `scale` | 在高度上再乘一个倍率（`1.5` = 1.5 倍）。和 `height` / `size` 一起用时要自己算乘积，一般不建议 |
+| `ascent` | 精确的垂直位置（文字底线以上的像素数，最大等于高度），写了就不看 `align` |
 
 :::tip 快速试大小
 每次改大小都要重新下发资源包，调整起来很慢。调试时可以把 `plugins/CloudTitle/resource_pack/` 整个文件夹复制到**自己电脑**的 `.minecraft/resourcepacks/` 并在游戏中启用，之后每次 `/clt pack` 再把文件夹覆盖过去，按 `F3 + T` 重新加载即可立即看到效果。调好后再正式下发给玩家。
