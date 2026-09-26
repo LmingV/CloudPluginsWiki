@@ -41,13 +41,13 @@ function ChatVisual() {
 
 const plugins = [
     {
-        id: "cosmetics", name: "CloudCosmetics", cn: "云时装", status: "v3.1.0", price: "50R", to: "/docs/cosmetics",
+        id: "cosmetics", name: "CloudCosmetics", cn: "云时装", status: "v3.1.0", price: "128R", to: "/docs/cosmetics",
         pitch: "把 bbmodel 做成玩家可以穿戴的时装：翅膀、背饰、贴身装甲、原生背包。",
         points: ["逐 tick 跟随，转身不拖影", "时装卡 · 商城 · 永久属性", "多件穿戴 · 原生背包"],
         Visual: CosmeticsVisual,
     },
     {
-        id: "title", name: "CloudTitle", cn: "云称号", status: "v1.0.0", price: "30R", to: "/docs/title",
+        id: "title", name: "CloudTitle", cn: "云称号", status: "v1.0.0", price: "45R", to: "/docs/title",
         pitch: "图片放进文件夹就会动的称号。资源包自动生成，一键合并进 ItemsAdder。",
         points: ["序列帧 / GIF 动态称号", "称号商店 · 称号卡 · 限时称号", "属性加成 · 跨服同步"],
         Visual: TitleVisual,
