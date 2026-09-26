@@ -16,6 +16,8 @@ description: config.yml 全部设置：默认值、属性、称号卡、日志�
 ```yaml
 # 没有佩戴称号时显示的称号 ID（必须是已定义的称号）；留空则变量返回空白
 default-title: ''
+# 称号图片前自动加上的颜色代码，默认 &f；留空 '' 则不加
+glyph-color: '&f'
 # 切换称号的冷却（秒），0 = 不限制
 switch-cooldown-seconds: 3
 
@@ -25,6 +27,11 @@ defaults:
   height: 16        # %clt_use% 大图高度
   small-height: 8   # %clt_use_small% 小图高度
 ```
+
+:::info 为什么默认加 &f
+称号图片本质上是一个文字，会继承周围的样式：物品名称与 lore 默认是**斜体**、lore 默认是**紫色**，没有颜色代码时称号图片会变斜或被染色。
+`glyph-color: '&f'` 会在菜单、称号卡、变量与 API 输出的每个称号图片前自动加上白色（= 图片原本的颜色）并取消斜体，不需要在模板里手动写 `&f`。
+:::
 
 ## 属性
 
