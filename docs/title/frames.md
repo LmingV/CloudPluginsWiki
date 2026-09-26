@@ -70,11 +70,13 @@ star:
 | `frames` | 称号 ID | 大图序列帧文件夹（`frames/` 下），也可以写单个文件，如 `vip/vip.png` |
 | `fps` | GIF 帧延迟，否则 `config.yml` 的 `defaults.fps` | 每秒播放几帧，1 – 20（超过 20 自动改为 20） |
 | `height` | `defaults.height`（16） | `%clt_use%` 的显示高度（像素，普通文字约 8） |
+| `scale` | `1.0` | 大小倍率，乘在 `height` 上：`2.0` 两倍、`0.5` 一半。必须大于 0，结果最高 256 像素 |
 | `ascent` | 自动居中 | 垂直位置：基线以上的像素数，不能大于 `height`；越大越往上 |
 | `offset-x` | `0` | 称号前的水平偏移，负数往左 |
 | `spacing` | `0` | 称号后额外留空的像素 |
 | `small.frames` | 见[小图](#小图) | 小图文件夹，`auto` = 自动缩小 |
 | `small.height` | `defaults.small-height`（8） | `%clt_use_small%` 的显示高度 |
+| `small.scale` | `1.0` | 小图的大小倍率（称号的 `scale` 只影响大图，小图要单独写） |
 | `small.ascent` / `small.offset-x` / `small.spacing` | 同上 | 小图各自的位置设置 |
 
 ### 菜单字段
