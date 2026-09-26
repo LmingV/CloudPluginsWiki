@@ -74,12 +74,13 @@ star:
 | `scale` | `1.0` | 大小倍率，乘在 `height` 上：`2.0` 两倍、`0.5` 一半。必须大于 0，结果最高 256 像素 |
 | `align` | `bottom` | 垂直位置：`bottom` 站在名字上方往上长 / `center` 居中 / `top` 往下长 |
 | `ascent` | 由 `align` 决定 | 垂直位置：基线以上的像素数，不能大于 `height`；越大越往上 |
+| `offset-y` | `0` | 上下移动（像素）：正数往上、负数往下，称号大小不变 |
 | `offset-x` | `0` | 称号前的水平偏移，负数往左 |
 | `spacing` | `0` | 称号后额外留空的像素 |
 | `small.frames` | 见[小图](#小图) | 小图文件夹，`auto` = 自动缩小 |
 | `small.size` / `small.height` | `特小`（8 像素） | `%clt_use_small%` 的大小，写法同上；小图的 `align` 默认 `center` |
 | `small.scale` | `1.0` | 小图的大小倍率（称号的 `scale` 只影响大图，小图要单独写） |
-| `small.align` / `small.ascent` / `small.offset-x` / `small.spacing` | 同上 | 小图各自的位置设置 |
+| `small.align` / `small.offset-y` / `small.ascent` / `small.offset-x` / `small.spacing` | 同上 | 小图各自的位置设置 |
 
 ### 菜单字段
 
@@ -130,6 +131,14 @@ star:
 | `bottom` | 站在文字底线上，只往上长（大图默认） |
 | `center` | 以文字为中心上下延伸（小图默认） |
 | `top` | 从文字顶部往下长 |
+
+**想让称号离名字再高一点或低一点**，用 `offset-y`（像素，正数往上、负数往下），称号大小不变：
+
+```yaml
+star:
+  size: 大
+  offset-y: 4       # 往上抬 4 像素；-2 = 往下压 2 像素
+```
 
 ### 进阶微调
 
