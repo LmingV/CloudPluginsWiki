@@ -47,7 +47,7 @@ const plugins = [
         Visual: CosmeticsVisual,
     },
     {
-        id: "title", name: "CloudTitle", cn: "云称号", status: "v1.0.0", to: "/docs/title",
+        id: "title", name: "CloudTitle", cn: "云称号", status: "v1.0.0", price: "30R", to: "/docs/title",
         pitch: "图片放进文件夹就会动的称号。资源包自动生成，一键合并进 ItemsAdder。",
         points: ["序列帧 / GIF 动态称号", "称号商店 · 称号卡 · 限时称号", "属性加成 · 跨服同步"],
         Visual: TitleVisual,
