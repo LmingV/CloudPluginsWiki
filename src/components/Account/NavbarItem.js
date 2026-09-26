@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 // 导航栏右上角：未登录显示「登录」，已登录显示用户名 + 下拉菜单
 export default function AccountNavbarItem({ mobile }) {
-  const { loaded, user, base } = useAccount();
+  const { loaded, user, admin, base } = useAccount();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -27,6 +27,7 @@ export default function AccountNavbarItem({ mobile }) {
         {user ? (
           <>
             <a className="menu__link" href={base + '/'} target="_blank" rel="noopener">会员中心 · {user.username}</a>
+            {admin && <a className="menu__link" href={base + '/#admin'} target="_blank" rel="noopener">管理后台</a>}
             <button className={`menu__link ${styles.mobileBtn}`} onClick={logout}>退出登录</button>
           </>
         ) : (
@@ -55,6 +56,13 @@ export default function AccountNavbarItem({ mobile }) {
           </div>
           <a href="/resources" onClick={() => setOpen(false)}>资源中心</a>
           <a href={base + '/'} target="_blank" rel="noopener">我的授权 ↗</a>
+          {admin && (
+            <>
+              <div className={styles.menuSep} />
+              <a href={base + '/#admin'} target="_blank" rel="noopener">管理后台 · 开通授权 ↗</a>
+              <a href={base + '/#products'} target="_blank" rel="noopener">资源管理 ↗</a>
+            </>
+          )}
           <button onClick={logout}>退出登录</button>
         </div>
       )}

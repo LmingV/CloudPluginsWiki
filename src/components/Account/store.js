@@ -46,7 +46,7 @@ export function refreshSession(base) {
 }
 
 export function setUser(user) {
-  set({ loaded: true, user });
+  set({ loaded: true, user, admin: user ? state.admin : false });
 }
 
 export function useAccount() {
