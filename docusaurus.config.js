@@ -19,7 +19,7 @@ const config = {
   customFields: {
     // 会员中心（Cloudflare Worker）地址；npm start 本地开发时连 wrangler dev
     memberCenter: process.env.MEMBER_CENTER
-      || (process.env.NODE_ENV === 'development' ? 'http://localhost:8787' : 'https://license.cloud.plugins.wiki'),
+      || (process.env.NODE_ENV === 'development' ? 'http://localhost:8787' : 'https://license.plugins.wiki'),
     qqGroup: 'https://qm.qq.com/q/qjKEhFUF0I',
   },
 
