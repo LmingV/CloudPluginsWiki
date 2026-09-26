@@ -24,7 +24,8 @@
 
 .navbar { border-bottom: 1px solid var(--ifm-color-emphasis-200); box-shadow: none; }
 .navbar__title { letter-spacing: -.02em; }
-.navbar__logo { width: 28px; height: 28px; }
+.navbar__logo { width: 32px; height: 32px; }
+.navbar__logo img, .cp-pixel-logo { image-rendering: pixelated; }
 .footer { background: #091226; }
 
 /* ---------- CloudCosmetics docs components ---------- */

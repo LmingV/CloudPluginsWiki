@@ -7,7 +7,12 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'CloudPlugins 官方 Wiki',
   tagline: 'CloudPlugins 云系列插件官方文档',
-  favicon: 'img/cloudplugins-mark.svg',
+  favicon: 'img/favicon.ico',
+  headTags: [
+    { tagName: 'link', attributes: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/img/favicon-32.png' } },
+    { tagName: 'link', attributes: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/img/favicon-16.png' } },
+    { tagName: 'link', attributes: { rel: 'apple-touch-icon', sizes: '180x180', href: '/img/apple-touch-icon.png' } },
+  ],
   stylesheets: [
     'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap',
   ],
@@ -65,6 +70,8 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      // 分享连结时显示的预览图
+      image: 'img/cloudplugins-social.png',
       colorMode: {
         defaultMode: 'dark',
         respectPrefersColorScheme: false,
@@ -82,7 +89,8 @@ const config = {
         title: 'CloudPlugins Wiki',
         logo: {
           alt: 'CloudPlugins Wiki Logo',
-          src: 'img/cloudplugins-mark.svg',
+          src: 'img/cloudplugins-logo.png',
+          className: 'cp-pixel-logo',
         },
         items: [
           { to: '/resources', label: '资源中心', position: 'left' },
