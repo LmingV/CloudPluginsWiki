@@ -65,8 +65,8 @@ const config = {
         respectPrefersColorScheme: false,
       },
       announcementBar: {
-        id: 'cc-2-10-8',
-        content: '✦ 云时装 <b>2.10.8</b> 已发布：多件穿戴（按分类同穿）· 修复 BODY 闪烁与上下跳动 · <a href="/docs/cosmetics/changelog">查看更新记录 →</a>',
+        id: 'release-2026-09-26',
+        content: '✦ 云时装 <b>3.1.0</b> 原生背包上线 · 云称号 <b>1.0.0</b> 序列帧动态称号 · <a href="/docs/cosmetics/changelog">查看更新 →</a>',
         isCloseable: true,
       },
       docs: {
@@ -81,37 +81,39 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'cosmeticsSidebar',
+            type: 'dropdown',
+            label: '全部插件',
             position: 'left',
-            label: 'CloudCosmetics',
+            className: 'cp-nav-plugins',
+            items: [
+              { type: 'html', value: '<span class="cp-nav-group">云系列插件</span>' },
+              { to: '/docs/cosmetics', label: 'CloudCosmetics · 云时装' },
+              { to: '/docs/title', label: 'CloudTitle · 云称号' },
+              { to: '/docs/chat', label: 'CloudChat · 云聊天' },
+              { type: 'html', value: '<span class="cp-nav-group">模型贩售</span>' },
+              { to: '/docs/shop/cosmetics', label: '时装模型' },
+              { to: '/docs/shop/skills', label: '技能模型' },
+              { to: '/docs/shop/weapons', label: '武器模型' },
+              { to: '/docs/shop/terms', label: '购买须知' },
+            ],
           },
           {
-            type: 'docSidebar',
-            sidebarId: 'titleSidebar',
-            position: 'left',
-            label: 'CloudTitle',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'chatSidebar',
-            position: 'left',
-            label: 'CloudChat',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'shopSidebar',
-            position: 'left',
-            label: '🛒 模型商店',
-          },
-          {
-            to: '/docs/cosmetics/changelog',
+            type: 'dropdown',
             label: '更新记录',
-            position: 'right',
+            position: 'left',
+            items: [
+              { to: '/docs/cosmetics/changelog', label: 'CloudCosmetics' },
+              { to: '/docs/title/changelog', label: 'CloudTitle' },
+            ],
           },
           {
             to: '/docs/intro',
             label: '快速开始',
+            position: 'right',
+          },
+          {
+            href: 'https://qm.qq.com/q/qjKEhFUF0I',
+            label: '交流群',
             position: 'right',
           },
           {
