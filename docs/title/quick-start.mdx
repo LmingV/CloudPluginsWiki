@@ -75,7 +75,8 @@ star:
 
 插件会生成 `plugins/CloudTitle/resource_pack/` 与 `CloudTitle-pack.zip`。
 
-- 装了 **ItemsAdder / CraftEngine / Nexo**：会自动同步过去，执行它们的打包指令（例如 `/iazip`）即可。
+- 装了 **ItemsAdder**：在 `plugins/ItemsAdder/config.yml` 的 `merge_other_plugins_resourcepacks_folders` 加入 `CloudTitle/resource_pack`，然后执行 `/iazip`（[详细步骤](./resource-pack.md#itemsadder-指定路径推荐)）。
+- 装了 **CraftEngine / Nexo**：会自动同步过去，执行它们的重载指令即可。
 - 都没装：把 `CloudTitle-pack.zip` 设为服务器资源包发给玩家。
 
 详见[资源包与合并](./resource-pack.md)。

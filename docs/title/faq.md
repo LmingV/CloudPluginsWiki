@@ -11,7 +11,7 @@ description: 云称号常见问题与排错。
 
 ### 称号显示成方块 / 白框？
 
-玩家没有加载最新的资源包。确认资源包已发送给玩家（或已合并进 ItemsAdder / CraftEngine / Nexo 并重新打包），新增或修改图片后需要重新下发。见[资源包与合并](./resource-pack.md)。
+玩家没有加载最新的资源包。确认资源包已发送给玩家（或已在 ItemsAdder 指定路径 / 同步到 CraftEngine、Nexo 并重新打包），新增或修改图片后需要重新下发。见[资源包与合并](./resource-pack.md)。
 
 ### 称号不会动？
 
