@@ -16,6 +16,12 @@ const config = {
   url: 'https://Cloud.plugins.wiki',
   // 自定义域名下部署在根路径
   baseUrl: '/',
+  customFields: {
+    // 会员中心（Cloudflare Worker）地址；npm start 本地开发时连 wrangler dev
+    memberCenter: process.env.MEMBER_CENTER
+      || (process.env.NODE_ENV === 'development' ? 'http://localhost:8787' : 'https://license.cloud.plugins.wiki'),
+    qqGroup: 'https://qm.qq.com/q/qjKEhFUF0I',
+  },
 
   // GitHub Pages 部署配置
   organizationName: 'LmingV', // GitHub 用户名/组织名
@@ -80,6 +86,7 @@ const config = {
           src: 'img/cloudplugins-mark.svg',
         },
         items: [
+          { to: '/resources', label: '资源中心', position: 'left' },
           {
             type: 'dropdown',
             label: '全部插件',
@@ -130,6 +137,7 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          { type: 'custom-account', position: 'right' },
         ],
       },
       footer: {
