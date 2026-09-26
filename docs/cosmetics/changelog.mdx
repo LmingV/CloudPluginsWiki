@@ -13,13 +13,37 @@ import Changelog from '@site/src/components/Changelog';
 
 每个版本的更新内容与发布日期。升级方式见[安装与升级](./install.md#从旧版升级)。
 
+:::tip 3.0 原生背包
+3.0 起支持 ItemsAdder / CraftEngine 原生背包（`type: backpack`），转身同步接近 HMCCosmetics，可与帽子等时装同时穿戴。建议直接使用 **3.1.0**。配置见[原生背包](./define/render-modes.mdx#backpack--原生背包30-起)。
+:::
+
 :::tip 2.10.8 多件穿戴
 2.10.8 起可以让玩家同时穿戴多件时装（翅膀 + 头饰 + 光环……），默认仍为一次一件。开启方式见[多件穿戴](./loadout.md)。
 :::
 
 <Changelog entries={[
   {
-    version: '2.10.8', date: '2026-09-26', latest: true, title: '可设置的多件穿戴',
+    version: '3.1.0', date: '2026-09-26', latest: true, title: '原生背包品质修正',
+    items: [
+      ['fix', '急转身后停下时，背包不再停在转身前的方向：每 tick 以玩家已确认的朝向校正，停下后一个 tick 内对齐'],
+      ['fix', '背包盔甲座被其他插件（WorldGuard 禁止生成、实体数量限制等）取消生成时，不再每 5 tick 无限重试；改为记录一次提示并每 30 秒重试，恢复后自动显示'],
+      ['opt', '背包物品只通过封包显示给玩家，服务端的盔甲座本身不再持有物品；盔甲座若意外死亡也不会产生掉落物'],
+      ['compat', '直接替换 JAR 并完整重启，不需要修改任何配置或数据'],
+    ],
+  },
+  {
+    version: '3.0', date: '2026-09-26', title: 'CE / IA 原生背包',
+    items: [
+      ['new', '新增 `type: backpack`：从 ItemsAdder / CraftEngine 取得背包物品，以隐形盔甲座头部装备显示并作为客户端乘客挂到玩家身上，不占用玩家真正的头盔或副手，不需要 HMCCosmetics'],
+      ['new', '支持 `backpack.source` / `backpack.item`；也可用 `type: body` 搭配 `body.renderer: armor-stand`'],
+      ['new', 'CE / IA 帽子（`type: equipment`、`slot: HEAD`）可与原生背包同时穿戴'],
+      ['opt', '转向同步：同一次移动更新依序送出背包载体的位置 / 朝向与头部角度；移动超过 0.25 格或转角超过 5 度时更新；隔离载体自身的追踪封包'],
+      ['compat', '原有 `body.renderer: item-display` 的 XYZ、缩放与显示预设保留，既有 BODY 配置不会被转换；原生背包不接受 offset / scale / transform，冲突时明确报错'],
+      ['compat', '高速急转期间仍可能有短暂同步差异，未宣称与 HMCCosmetics 完全一致；3.0 急转后停下可能停在旧方向，已在 3.1.0 修正'],
+    ],
+  },
+  {
+    version: '2.10.8', date: '2026-09-26', title: '可设置的多件穿戴',
     items: [
       ['new', '新增两种穿戴模式：`equipment.mode: single`（全身一件）/ `per-category`（每个分类分别穿戴）'],
       ['new', '分类以 `cosmetics/` 内的 YAML 文件名为准；`body`、`meg`、`equipment` 只是渲染方式，不再作为「同类型只能一件」的限制'],

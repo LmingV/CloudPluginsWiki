@@ -23,6 +23,7 @@ import TabItem from '@theme/TabItem';
 | 直接替换头盔 / 盔甲外观，转向与玩家完全一致 | `equipment` |
 | 保留原盔甲外观的贴身装甲、背饰 | `body` |
 | ItemsAdder / CraftEngine 做好的完整物品 | `body` + `source: itemsadder` / `craftengine` |
+| ItemsAdder / CraftEngine 做好的**背包**，转身要像 HMCCosmetics 一样贴身 | `backpack`（3.0 起，见[原生背包](#backpack--原生背包30-起)） |
 
 ## 对比
 
@@ -198,6 +199,25 @@ spirit_armor:
 
 </TabItem>
 </Tabs>
+
+## `backpack` · 原生背包（3.0 起）
+
+把 ItemsAdder / CraftEngine 做好的背包物品，戴在一个隐形盔甲座的头上，再作为客户端乘客挂到玩家身上。背包的身体朝向由 Minecraft 客户端按玩家计算，转身时和玩家同步，不需要安装 HMCCosmetics，也**不占用**玩家真正的头盔或副手。
+
+```yaml title="cosmetics/backpacks.yml"
+explorer_backpack:
+  type: backpack
+  name: '&e探险背包'
+  backpack:
+    source: itemsadder              # 或 craftengine
+    item: myitems:explorer_backpack # 在对应插件中注册好的物品 ID
+```
+
+- 背包和帽子请放在**不同的分类文件**（例如 `backpacks.yml`、`hats.yml`），配合[多件穿戴](../loadout.md)的 `per-category` 即可同时穿戴。
+- 位置与大小由模型资源包里的 **HEAD 显示预设**决定；只为左手制作的模型需要在资源包里补上 HEAD 预设。
+- 原生背包不接受 `offset`、非 1 的 `scale` 或其他 `transform`，写了会在加载时明确报错。需要自由调整位置时，改用 `body` 并设 `body.renderer: item-display`。
+- 背包物品只通过封包显示给玩家，服务端的盔甲座本身不持有物品（3.1.0 起）。
+- 如果某个区域禁止插件生成盔甲座（例如 WorldGuard 的禁止生成设置），背包会暂时不显示，控制台会提示一次，并每 30 秒自动重试（3.1.0 起）。
 
 ## 资源包提醒
 
