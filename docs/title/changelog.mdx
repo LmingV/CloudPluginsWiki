@@ -19,6 +19,9 @@ import Changelog from '@site/src/components/Changelog';
     items: [
       ['new', '序列帧称号：文件夹内 PNG 按文件名数字顺序播放并循环，单张图为静态称号，GIF 自动拆帧；每个称号可设 fps（1 – 20），无需 mcmeta'],
       ['new', '大图 / 小图两种尺寸：`%clt_use%` 与 `%clt_use_small%`，小图可指定文件夹、使用 `<文件夹>_small` 或自动缩小'],
+      ['new', '大小与位置一行搞定：`size: 特小 / 小 / 中 / 大 / 特大`（8 / 12 / 16 / 20 / 28 像素，也可直接写数字），`offset-y` 上下移动（像素，称号大小不变）；进阶可用 `height`、`scale`、`align`、`ascent` 微调'],
+      ['new', '大图默认 `align: bottom`：称号站在名字上方往上长，不会压到下面那行名字；小图默认居中'],
+      ['new', '`glyph-color`（默认 `&f`）：自动在称号图片前加上白色并取消斜体，菜单、称号卡与变量中的称号不再变斜或被染色'],
       ['new', '静态变量 `%clt_use_static%` / `%clt_use_small_static%`，以及名称、ID、拥有状态、数量、剩余时间、悬停文本等共 10 个变量'],
       ['new', '资源包自动生成（文件夹 + zip），字符表持久保存；自动合并到 ItemsAdder / CraftEngine / Nexo，使用 U+F0000 起的字符区不与其冲突'],
       ['new', '称号仓库 `/clt open`、称号商店 `/clt shop`、管理界面 `/clt view`、展示界面 `/clt showcase`，全部可自定义并自动分页'],
