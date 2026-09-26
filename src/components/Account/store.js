@@ -12,7 +12,10 @@ function set(next) {
 }
 
 export function useMemberBase() {
-  return useDocusaurusContext().siteConfig.customFields.memberCenter;
+  const configured = useDocusaurusContext().siteConfig.customFields.memberCenter;
+  // 本机预览（npm start）连本机的 wrangler dev
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') return 'http://localhost:8787';
+  return configured;
 }
 
 export async function memberApi(base, path, body) {

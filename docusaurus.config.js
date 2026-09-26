@@ -17,9 +17,8 @@ const config = {
   // 自定义域名下部署在根路径
   baseUrl: '/',
   customFields: {
-    // 会员中心（Cloudflare Worker）地址；npm start 本地开发时连 wrangler dev
-    memberCenter: process.env.MEMBER_CENTER
-      || (process.env.NODE_ENV === 'development' ? 'http://localhost:8787' : 'https://license.plugins.wiki'),
+    // 会员中心（Cloudflare Worker）地址；在 localhost 预览时自动改连 http://localhost:8787
+    memberCenter: process.env.MEMBER_CENTER || 'https://license.plugins.wiki',
     qqGroup: 'https://qm.qq.com/q/qjKEhFUF0I',
   },
 

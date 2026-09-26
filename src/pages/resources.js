@@ -39,7 +39,7 @@ function Cover({ item, large }) {
 }
 
 function PriceTag({ item }) {
-  if (item.owned) return <span className={`${styles.priceTag} ${styles.owned}`}>✓ 已拥有</span>;
+  if (item.owned) return <span className={`${styles.priceTag} ${styles.owned}`}>✓ {item.free ? '已领取' : '已购买'}</span>;
   if (item.status === 'soon') return <span className={`${styles.priceTag} ${styles.soon}`}>开发中</span>;
   if (item.free) return <span className={`${styles.priceTag} ${styles.free}`}>可领取</span>;
   return <span className={`${styles.priceTag} ${styles.paid}`}>付费 · {item.price}</span>;
@@ -97,7 +97,7 @@ function Detail({ item, user, qqGroup, onClose, ...actions }) {
   const how = item.status === 'soon'
     ? '正在开发中，上线后会在这里开放获取。'
     : item.owned
-      ? '你已经拥有这个资源，可以在会员中心查看授权码。'
+      ? (item.free ? '你已经领取了这个资源' : '你已经购买了这个资源') + '，可以在会员中心查看授权码。'
       : item.free
         ? '登录后点击领取，授权码会直接加入你的账号，并可继续获取后续更新。'
         : null;
@@ -125,8 +125,8 @@ function Detail({ item, user, qqGroup, onClose, ...actions }) {
           </div>
           <aside className={styles.side}>
             <div className={styles.sideKicker}>获取方式</div>
-            <div className={`${styles.sidePrice} ${item.free ? styles.sideFree : styles.sidePaid}`}>
-              {item.status === 'soon' ? '开发中' : item.free ? '免费领取' : item.price}
+            <div className={`${styles.sidePrice} ${item.owned ? styles.sideOwned : item.free ? styles.sideFree : styles.sidePaid}`}>
+              {item.status === 'soon' ? '开发中' : item.owned ? (item.free ? '已领取' : '已购买') : item.free ? '免费领取' : item.price}
             </div>
             {how && <p className={styles.sideText}>{how}</p>}
             {!how && (

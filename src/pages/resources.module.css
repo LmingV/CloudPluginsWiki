@@ -166,6 +166,7 @@
 .sidePrice { margin: .2rem 0 .4rem; font-size: 2rem; font-weight: 900; }
 .sidePaid { color: var(--paid); }
 .sideFree { color: var(--free); }
+.sideOwned { color: var(--cc-accent-b); }
 .sideText { margin: 0 0 1rem; font-size: .88rem; color: var(--muted); }
 .buySteps { margin: 0 0 1rem; padding-left: 1.2rem; font-size: .88rem; color: var(--muted); }
 .buySteps li { margin: .25rem 0; }
