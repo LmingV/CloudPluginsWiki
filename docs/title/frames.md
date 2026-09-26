@@ -71,13 +71,14 @@ star:
 | `fps` | GIF 帧延迟，否则 `config.yml` 的 `defaults.fps` | 每秒播放几帧，1 – 20（超过 20 自动改为 20） |
 | `height` | `defaults.height`（16） | `%clt_use%` 的显示高度（像素，普通文字约 8） |
 | `scale` | `1.0` | 大小倍率，乘在 `height` 上：`2.0` 两倍、`0.5` 一半。必须大于 0，结果最高 256 像素 |
-| `ascent` | 自动居中 | 垂直位置：基线以上的像素数，不能大于 `height`；越大越往上 |
+| `align` | `center` | 垂直位置：`center` 居中 / `bottom` 站在文字底线往上长 / `top` 从文字顶部往下长，见[调大小与位置](#调大小与位置) |
+| `ascent` | 由 `align` 决定 | 垂直位置：基线以上的像素数，不能大于 `height`；越大越往上 |
 | `offset-x` | `0` | 称号前的水平偏移，负数往左 |
 | `spacing` | `0` | 称号后额外留空的像素 |
 | `small.frames` | 见[小图](#小图) | 小图文件夹，`auto` = 自动缩小 |
 | `small.height` | `defaults.small-height`（8） | `%clt_use_small%` 的显示高度 |
 | `small.scale` | `1.0` | 小图的大小倍率（称号的 `scale` 只影响大图，小图要单独写） |
-| `small.ascent` / `small.offset-x` / `small.spacing` | 同上 | 小图各自的位置设置 |
+| `small.align` / `small.ascent` / `small.offset-x` / `small.spacing` | 同上 | 小图各自的位置设置 |
 
 ### 菜单字段
 
@@ -98,6 +99,26 @@ star:
 | `shop` | 商店价格，见[商店与获取方式](./obtain.md#商店) |
 | `card` | 称号卡设置，见[称号卡](./obtain.md#称号卡) |
 | `stats` | 属性加成，见[属性加成](./stats.md) |
+
+## 调大小与位置
+
+只需要记住两件事：**`height` 管大小，`align` 管位置**。
+
+| 想要 | 这样写 |
+| --- | --- |
+| 普通文字大小（8 像素） | `height: 8` |
+| 头顶称号，比名字大一些 | `height: 16` – `24` |
+| 放在头顶最上面一行、不压到下面的名字 | `align: bottom` |
+| 和文字并排、上下居中（聊天、TAB） | `align: center`（默认） |
+
+- **`scale` 与 `height` 二选一即可**：`scale` 是乘在 `height` 上的，`height: 10` + `scale: 3.0` 实际是 30 像素，一起调很难抓。
+- 称号比文字高时，`center` 会让图片**上下各伸出一半**，下半部就可能压到下一行；头顶名称的第一行改用 `align: bottom`，图片只往上长。
+- 仍需要微调时才写 `ascent`（基线以上的像素数，最大等于 `height`）：数字越大越往上。写了 `ascent` 就不看 `align`。
+- 宽度不用设，会按图片比例自动计算；例如 256×104 的图设 `height: 18`，游戏里约 44×18 像素。
+
+:::tip 快速试大小
+每次改大小都要重新下发资源包，调整起来很慢。调试时可以把 `plugins/CloudTitle/resource_pack/` 整个文件夹复制到**自己电脑**的 `.minecraft/resourcepacks/` 并在游戏中启用，之后每次 `/clt pack` 再把文件夹覆盖过去，按 `F3 + T` 重新加载即可立即看到效果。调好后再正式下发给玩家。
+:::
 
 ## 修改后生效
 
