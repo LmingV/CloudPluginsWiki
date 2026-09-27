@@ -1,0 +1,121 @@
+---
+last_update:
+  date: 2026-09-27
+  author: CloudPlugins 团队
+sidebar_position: 2
+title: 避天棺
+description: 避天棺 · 葬尽天命，避我一人。玄铁寒棺背饰时装，冰蓝魂火流转、铁链封印、天环悬顶，直立 / 斜背双版本，24 秒完整待机动画。
+---
+
+# 避天棺
+
+<div className="cc-shields">
+  <span className="cc-shield"><i>分类</i><b>时装 · 背饰</b></span>
+  <span className="cc-shield g"><i>适用</i><b>ModelEngine R4</b></span>
+  <span className="cc-shield v"><i>版本</i><b>直立 + 斜背</b></span>
+  <span className="cc-shield o"><i>动画</i><b>24 秒循环</b></span>
+  <span className="cc-shield p"><i>价格</i><b>45R</b></span>
+</div>
+
+<div className="cc-banner">
+  <img src="/img/shop/bitian-coffin-banner.webp" alt="避天棺 · 葬尽天命 避我一人" />
+</div>
+
+> **葬尽天命，避我一人。**
+>
+> 天道要收的人，棺中自有去处。
+> 玄铁为椁，寒魂为灯，九链锁身，天环镇顶——
+> 背上这口棺，便是向天借了一条命。
+
+<div className="cc-video cc-video-square">
+  <video autoPlay loop muted playsInline preload="auto" poster="/video/shop/bitian-coffin-poster.webp">
+    <source src="/video/shop/bitian-coffin.mp4" type="video/mp4" />
+  </video>
+  <span className="cc-video-tag">● 预览视频 · 带水印</span>
+</div>
+
+## 棺上有什么
+
+| 部位 | 说明 |
+| --- | --- |
+| ❄️ 冰蓝魂纹 | 棺面中央一道冰蓝魂火，自顶端锁扣直贯棺底，枝脉如霜向两侧蔓延，**32 帧动态贴图**，火光一刻不停 |
+| ⛓️ 封棺铁链 | 横锁棺身、侧垂双柱，随棺体晃动自然摆荡 |
+| 🏮 符幡与魂灯 | 两侧符幡随风翻卷，冰蓝魂灯悬挂柱侧 |
+| 🗼 双塔立柱 | 两根哥特尖柱夹棺而立，撑起整口棺的气势 |
+| 💫 天环 | 八角天环悬于棺顶，垂落冰棱，随棺浮沉 |
+| 🌬️ 寒气与星辰 | 冰蓝气流绕棺游走，碎星忽明忽灭 |
+
+## 双版本
+
+| 版本 | 模型 ID | 说明 |
+| --- | --- | --- |
+| 直立版 | `bitian_coffin` | 棺身笔直，正面完整展示魂纹 |
+| 斜背版 | `bitian_coffin_diagonal` | 40° 斜背，侧身行走更有压迫感 |
+
+两个版本动画完全一致，方块数 606、骨骼 170，一个服务器可以同时上架两种背法。
+
+:::caution 请保留英文文件名
+ModelEngine 以文件名作为模型 ID，请保持 `bitian_coffin.bbmodel`、`bitian_coffin_diagonal.bbmodel` 原名，**不要改成中文**。
+:::
+
+## 动画
+
+| 动画名称 | 类型 | 说明 |
+| --- | --- | --- |
+| `idle` | 循环 · 24 秒 | 棺体沉浮呼吸、棺中异动挣扎、符幡与铁链晃动、天环浮动、寒气环绕、星辰明灭 |
+
+- 全部动画为**数值关键帧**，不依赖 Blockbench Molang 运算式，导入 ModelEngine 后动作与预览一致；
+- 魂火贴图附带 `mcmeta`，32 帧共 40 tick 循环，资源包生成后即可直接播放。
+
+:::note 已实测
+已在 Purpur 1.21.4 + ModelEngine R4.0.9 完成模型导入、资源包生成与贴图动画检查。
+:::
+
+## 正面特写
+
+<div className="cc-preview-row">
+  <figure>
+    <img src="/img/shop/bitian-coffin-front.webp" alt="避天棺 正面（预览）" style={{maxHeight: '420px'}} />
+    <figcaption>直立版 · 正面</figcaption>
+  </figure>
+</div>
+
+:::note 预览素材带有水印
+页面上的图片与视频均为带水印的预览版本，实际交付文件不含水印。
+:::
+
+## 搭配云时装使用
+
+放入 `plugins/ModelEngine/blueprints/` 并执行 `/meg reload`，重新生成并下发资源包后，在[云时装](/docs/cosmetics)中加入：
+
+```yaml title="cosmetics/eternal.yml"
+bitian_coffin:
+  type: meg
+  name: '<gradient:#E8F4FF:#3F8CFF>[天葬]</gradient> 避天棺'
+  model: bitian_coffin            # 斜背版改成 bitian_coffin_diagonal
+  scale: 1.0                      # 按服务器需要调整大小
+  follow-rotation: true
+  animations:
+    idle: idle
+```
+
+也可以不用云时装，搭配 MythicMobs / 其他 ModelEngine 插件使用。
+
+:::tip 出现紫黑缺图？
+只替换 `.bbmodel` 而沿用旧资源包时会出现紫黑贴图，请重新生成 ModelEngine 资源包并让玩家重新下载。
+:::
+
+## 购买
+
+<div className="cc-buy">
+  <div>
+    <div className="cc-buy-price">45R</div>
+    <div className="cc-buy-note">直立 + 斜背双版本 · 一次购买 · 永久使用 · 含后续修复更新</div>
+  </div>
+  <a className="cc-buy-btn" href="https://qm.qq.com/q/qjKEhFUF0I" target="_blank" rel="noopener noreferrer">加入 QQ 群购买 →</a>
+</div>
+
+:::danger 禁止倒卖
+本模型仅授权购买者本人的服务器使用，**严禁转售、分享或公开发布**。
+每一份售出的文件都带有**购买者专属的特殊标记**，可追溯来源。详见[购买须知与版权声明](../terms.md)。
+:::

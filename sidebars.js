@@ -54,7 +54,7 @@ const sidebars = {
     {
       type: 'category', label: '时装', collapsible: false,
       link: { type: 'doc', id: 'shop/cosmetics/index' },
-      items: ['shop/cosmetics/samsara-scroll'],
+      items: ['shop/cosmetics/samsara-scroll', 'shop/cosmetics/bitian-coffin'],
     },
     {
       type: 'category', label: '技能', collapsible: false,
