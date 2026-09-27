@@ -31,4 +31,4 @@ sidebar_position: 1
 
 ## 获取支持
 
-你可以在 [GitHub](https://github.com/LmingV/CloudPlugins.github.io) 提交问题与改进建议，也可以加入[官方交流群](https://qm.qq.com/q/qjKEhFUF0I) 获取社区支持。
+遇到问题或有改进建议，欢迎加入[官方交流群](https://qm.qq.com/q/qjKEhFUF0I)，作者和社区都会帮你解答。

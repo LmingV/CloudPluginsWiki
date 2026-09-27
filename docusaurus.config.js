@@ -50,15 +50,9 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           showLastUpdateTime: true,
-          showLastUpdateAuthor: true,
-          // 每篇文档右上角“编辑此页”链接指向 GitHub
-          editUrl:
-            'https://github.com/LmingV/CloudPluginsWiki/tree/main/',
         },
         blog: {
           showReadingTime: true,
-          editUrl:
-            'https://github.com/LmingV/CloudPluginsWiki/tree/main/',
         },
         theme: {
           customCss: ['./src/css/custom.css', './src/css/theme.css'],
@@ -139,11 +133,6 @@ const config = {
             label: '交流群',
             position: 'right',
           },
-          {
-            href: 'https://github.com/LmingV/CloudPlugins.github.io',
-            label: 'GitHub',
-            position: 'right',
-          },
           { type: 'custom-account', position: 'right' },
         ],
       },
@@ -175,8 +164,8 @@ const config = {
                 href: 'https://qm.qq.com/q/qjKEhFUF0I',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/LmingV/CloudPlugins.github.io',
+                label: '资源中心',
+                to: '/resources',
               },
             ],
           },
